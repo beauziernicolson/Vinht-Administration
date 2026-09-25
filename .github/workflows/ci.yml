@@ -1,0 +1,109 @@
+name: VinHT Web Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          find js api -type f -name '*.js' -print0 | xargs -0 -r -n1 node --check
+
+      - name: Validate repository scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in mobile android ios docs .claude .vscode; do
+            test ! -e "$path" || { echo "Unexpected internal path: $path"; exit 1; }
+          done
+          for file in CLAUDE.md claude.md AGENTS.md VSCODE.md; do
+            test ! -e "$file" || { echo "Unexpected internal file: $file"; exit 1; }
+          done
+          if find . -type f -name '*.md' ! -name 'README.md' | grep -q .; then
+            echo 'README.md must remain the only Markdown document in this delivery repository.'
+            exit 1
+          fi
+
+      - name: Guard against committed secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find . -type f \( -name '.env' -o -name '.env.*' -o -name '*.pem' -o -name '*.key' -o -name '*.p12' -o -name '*.pfx' \) | grep -q .; then
+            echo 'Sensitive configuration file detected.'
+            exit 1
+          fi
+          if grep -RInE --exclude-dir=.git --exclude='README.md' '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|github_pat_[A-Za-z0-9_]+|ghp_[A-Za-z0-9]+|sk_live_[A-Za-z0-9]+|whsec_[A-Za-z0-9]+|SUPABASE_SERVICE_ROLE(_KEY)?[[:space:]]*[:=])' .; then
+            echo 'Potential secret detected.'
+            exit 1
+          fi
+
+      - name: Validate local references
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re, sys
+          from pathlib import Path
+
+          root = Path('.').resolve()
+          errors = []
+
+          def exists_from(base, raw, root_relative=False):
+              raw = raw.split('#', 1)[0].split('?', 1)[0].strip()
+              if not raw or raw.startswith(('http:', 'https:', 'data:', 'mailto:', 'tel:', 'javascript:', '#')):
+                  return True
+              if '...' in raw or '${' in raw or '{' in raw or raw in ('./', '../'):
+                  return True
+              target = (root / raw.lstrip('/')) if raw.startswith('/') or root_relative else (base / raw)
+              return target.resolve().exists()
+
+          for path in root.rglob('*.js'):
+              source = path.read_text('utf-8', errors='replace')
+              imports = re.findall(r'(?:import|export)\s+(?:[^"\']*?\s+from\s*)?["\']([^"\']+)["\']', source)
+              imports += re.findall(r'import\(\s*["\']([^"\']+)["\']\s*\)', source)
+              for raw in imports:
+                  if raw.startswith('.') and not exists_from(path.parent, raw):
+                      errors.append(f'{path}: missing module {raw}')
+              for raw in re.findall(r'["\']((?:assets|images)/[^"\']+)["\']', source):
+                  if not exists_from(root, raw, True):
+                      errors.append(f'{path}: missing asset {raw}')
+
+          for path in root.rglob('*.html'):
+              source = path.read_text('utf-8', errors='replace')
+              for raw in re.findall(r'(?:src|href)=["\']([^"\']+)["\']', source, re.I):
+                  clean = raw.split('#', 1)[0].split('?', 1)[0]
+                  if clean.startswith(('http:', 'https:', 'data:', 'mailto:', 'tel:', 'javascript:', '#')):
+                      continue
+                  if Path(clean).suffix.lower() in {'.js', '.css', '.html', '.png', '.jpg', '.jpeg', '.webp', '.svg', '.ico', '.avif'} and not exists_from(path.parent, raw):
+                      errors.append(f'{path}: missing reference {raw}')
+
+          for path in root.rglob('*.css'):
+              source = path.read_text('utf-8', errors='replace')
+              for raw in re.findall(r'url\(\s*["\']?([^"\')]+)', source, re.I):
+                  if not exists_from(path.parent, raw):
+                      errors.append(f'{path}: missing CSS asset {raw}')
+
+          errors = list(dict.fromkeys(errors))
+          if errors:
+              print('\n'.join(errors[:200]))
+              print(f'{len(errors)} missing local references', file=sys.stderr)
+              raise SystemExit(1)
+          print('Local references: OK')
+          PY
