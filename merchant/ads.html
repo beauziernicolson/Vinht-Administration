@@ -1,0 +1,48 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Publicité VinHT — VinHT</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="../styles.css">  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+</head><body class="portal-theme-merchant" data-merchant-page="ads">
+  <div class="vinht-site-loader" id="vinhtSiteLoader" role="status" aria-live="polite" aria-label="Chargement de VinHT">
+    <div class="vinht-loader-glass"><span class="vinht-loader-ring" aria-hidden="true"></span><strong>VinHT</strong><small>Chargement…</small></div>
+  </div><header class="portal-global-topbar"><div class="portal-global-inner">
+<a class="portal-global-logo" href="../index.html"><img src="../assets/vinht-logo.png" alt="VinHT" decoding="async"><span>Espace marchand</span></a>
+<a class="portal-global-back" href="../index.html"><i data-lucide="arrow-left"></i> Retour à la marketplace</a>
+<form class="portal-global-search" data-global-search><i data-lucide="search"></i><input type="search" data-search-input placeholder="Rechercher sur VinHT…" autocomplete="off"><button type="submit" aria-label="Rechercher"><i data-lucide="arrow-right"></i></button></form>
+<nav class="portal-global-actions" aria-label="Actions VinHT"><a href="../notifications.html" aria-label="Notifications"><i data-lucide="bell"></i><span class="nav-badge" data-notification-badge></span></a><a href="../help.html" aria-label="Aide"><i data-lucide="circle-help"></i></a><a href="../account.html" aria-label="Compte"><i data-lucide="user-round"></i></a></nav>
+</div></header><main class="portal-shell"><div class="container portal-layout"><aside class="portal-sidebar"><div class="portal-user"><div class="portal-avatar" data-merchant-initial>V</div><div><strong data-merchant-name>Ma boutique</strong><small data-merchant-type>Marchand VinHT</small></div></div><nav class="portal-nav"><a class="" href="index.html"><i data-lucide="layout-dashboard"></i>Dashboard</a><a class="" href="products.html"><i data-lucide="boxes"></i>Produits</a><a class="" href="product-new.html"><i data-lucide="package-plus"></i>Ajouter produit</a><a class="" href="inventory.html"><i data-lucide="warehouse"></i>Inventaire</a><a class="" href="orders.html"><i data-lucide="clipboard-list"></i>Commandes</a><a class="" href="revenue.html"><i data-lucide="wallet-cards"></i>Revenus</a><a class="" href="analytics.html"><i data-lucide="chart-no-axes-combined"></i>Analytics</a><a class="" href="promotions.html"><i data-lucide="badge-percent"></i>Promotions</a><a class="active" href="ads.html"><i data-lucide="megaphone"></i>Publicité VinHT</a><a class="" href="notifications.html"><i data-lucide="bell"></i>Notifications</a><a class="" href="settings.html"><i data-lucide="settings-2"></i>Boutique</a><a class="" href="support.html"><i data-lucide="life-buoy"></i>Support</a><a href="../merchant-center.html"><i data-lucide="wrench"></i>Centre complet</a><a href="../index.html"><i data-lucide="arrow-left"></i>Retour au site</a></nav></aside><section class="portal-main"><div class="portal-head"><div><span class="portal-kicker">Espace marchand</span><h1>Publicité VinHT</h1><p>Sponsorisez vos produits sur la marketplace.</p></div></div><div data-merchant-gate hidden class="portal-card"></div><div data-merchant-content hidden>
+  <div id="adsRuntimeHost" class="portal-card"></div>
+
+  <div class="portal-card" id="adsCreateCard" hidden>
+    <div class="toolbar"><h3 style="margin:0">Nouvelle campagne</h3></div>
+    <form id="adsCreateForm" style="display:flex;flex-direction:column;gap:8px">
+      <div class="field"><label>Nom de la campagne (2-120 caractères)</label><input class="input" name="name" maxlength="120" required></div>
+      <div class="field"><label>Produit à sponsoriser (ID)</label><input class="input" name="product_id" placeholder="UUID du produit" required></div>
+      <p class="muted" style="font-size:11px">Le produit doit être approuvé et actif. Le ciblage par offre (revendeur) n'est pas encore disponible dans cette interface.</p>
+      <div class="field"><label>Emplacements (1 à 4)</label>
+        <div class="toolbar-group" style="flex-wrap:wrap"><label style="font-size:13px;display:flex;gap:4px;align-items:center"><input type="checkbox" name="placement_search"> Recherche</label><label style="font-size:13px;display:flex;gap:4px;align-items:center"><input type="checkbox" name="placement_category"> Catégorie</label><label style="font-size:13px;display:flex;gap:4px;align-items:center"><input type="checkbox" name="placement_product_page"> Fiche produit</label><label style="font-size:13px;display:flex;gap:4px;align-items:center"><input type="checkbox" name="placement_home"> Accueil</label></div>
+      </div>
+      <div class="customer-grid">
+        <div class="field"><label>Budget total (HTG)</label><input class="input" type="number" name="total_budget_htg" min="1" step="1" required></div>
+        <div class="field"><label>Budget journalier HTG (facultatif)</label><input class="input" type="number" name="daily_budget_htg" min="1" step="1"></div>
+      </div>
+      <div class="customer-grid">
+        <div class="field"><label>Début</label><input class="input" type="datetime-local" name="start_at" required></div>
+        <div class="field"><label>Fin</label><input class="input" type="datetime-local" name="end_at" required></div>
+      </div>
+      <div id="adsCreateMsg" style="font-size:12px;display:none"></div>
+      <div class="toolbar-group"><button class="btn btn-dark btn-sm" type="submit">Créer la campagne</button></div>
+    </form>
+  </div>
+
+  <div class="portal-card">
+    <div class="toolbar" style="flex-wrap:wrap;gap:10px"><h3>Mes campagnes</h3>
+      <div class="toolbar-group" style="flex-wrap:wrap">
+        <select class="input" id="adsStatusFilter"><option value="">Tous statuts</option><option value="draft">Brouillon</option><option value="pending_funding">En attente de financement</option><option value="scheduled">Planifiée</option><option value="active">Active</option><option value="paused">En pause</option><option value="exhausted">Budget épuisé</option><option value="ended">Terminée</option><option value="cancelled">Annulée</option></select>
+      </div>
+    </div>
+    <div id="adsListHost"></div>
+    <div id="adsListLoadMoreWrap" style="margin-top:10px;text-align:center"></div>
+  </div>
+
+  <div id="adsDetailHost"></div>
+</div></section></div></main><nav class="mobile-bottom-nav"><a class=" " href="../index.html"><i data-lucide="house"></i><span>Accueil</span></a><a class=" " href="../category.html"><i data-lucide="grid-2x2"></i><span>Catégories</span></a><a class=" " href="../wishlist.html"><i data-lucide="heart"></i><span>Favoris</span></a><a class=" mobile-cart" href="../cart.html"><i data-lucide="shopping-bag"></i><span>Panier</span><span class="cart-count">0</span></a><a class="active " href="../account.html"><i data-lucide="user"></i><span>Moi</span></a></nav><script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.js" defer></script><script src="../js/demo/market-demo-standalone.js"></script>
+  <script type="module" src="../js/main.js"></script>  <script src="../js/ui/siteLoader.js" defer></script>
+</body></html>

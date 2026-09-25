@@ -1,0 +1,34 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Notifications — VinHT</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="../styles.css">  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+</head><body class="portal-theme-merchant" data-merchant-page="notifications">
+  <div class="vinht-site-loader" id="vinhtSiteLoader" role="status" aria-live="polite" aria-label="Chargement de VinHT">
+    <div class="vinht-loader-glass"><span class="vinht-loader-ring" aria-hidden="true"></span><strong>VinHT</strong><small>Chargement…</small></div>
+  </div><header class="portal-global-topbar"><div class="portal-global-inner">
+<a class="portal-global-logo" href="../index.html"><img src="../assets/vinht-logo.png" alt="VinHT" decoding="async"><span>Espace marchand</span></a>
+<a class="portal-global-back" href="../index.html"><i data-lucide="arrow-left"></i> Retour à la marketplace</a>
+<form class="portal-global-search" data-global-search><i data-lucide="search"></i><input type="search" data-search-input placeholder="Rechercher sur VinHT…" autocomplete="off"><button type="submit" aria-label="Rechercher"><i data-lucide="arrow-right"></i></button></form>
+<nav class="portal-global-actions" aria-label="Actions VinHT"><a href="../notifications.html" aria-label="Notifications"><i data-lucide="bell"></i><span class="nav-badge" data-notification-badge></span></a><a href="../help.html" aria-label="Aide"><i data-lucide="circle-help"></i></a><a href="../account.html" aria-label="Compte"><i data-lucide="user-round"></i></a></nav>
+</div></header><main class="portal-shell"><div class="container portal-layout"><aside class="portal-sidebar"><div class="portal-user"><div class="portal-avatar" data-merchant-initial>V</div><div><strong data-merchant-name>Ma boutique</strong><small data-merchant-type>Marchand VinHT</small></div></div><nav class="portal-nav"><a class="" href="index.html"><i data-lucide="layout-dashboard"></i>Dashboard</a><a class="" href="products.html"><i data-lucide="boxes"></i>Produits</a><a class="" href="product-new.html"><i data-lucide="package-plus"></i>Ajouter produit</a><a class="" href="inventory.html"><i data-lucide="warehouse"></i>Inventaire</a><a class="" href="orders.html"><i data-lucide="clipboard-list"></i>Commandes</a><a class="" href="revenue.html"><i data-lucide="wallet-cards"></i>Revenus</a><a class="" href="analytics.html"><i data-lucide="chart-no-axes-combined"></i>Analytics</a><a class="" href="promotions.html"><i data-lucide="badge-percent"></i>Promotions</a><a class="" href="ads.html"><i data-lucide="megaphone"></i>Publicité VinHT</a><a class="active" href="notifications.html"><i data-lucide="bell"></i>Notifications</a><a class="" href="settings.html"><i data-lucide="settings-2"></i>Boutique</a><a class="" href="support.html"><i data-lucide="life-buoy"></i>Support</a><a href="../merchant-center.html"><i data-lucide="wrench"></i>Centre complet</a><a href="../index.html"><i data-lucide="arrow-left"></i>Retour au site</a></nav></aside><section class="portal-main"><div class="portal-head"><div><span class="portal-kicker">Espace marchand</span><h1>Notifications</h1><p>Alertes liées à votre compte marchand.</p></div></div><div data-merchant-gate hidden class="portal-card"></div><div data-merchant-content hidden>
+  <div class="toolbar" style="flex-wrap:wrap;gap:10px"><h3 style="margin:0">Mes notifications</h3><button class="btn btn-ghost btn-sm" id="merchantMarkAll" type="button">Tout marquer comme lu</button></div>
+  <div id="merchantNotificationsHost"></div>
+  <div id="merchantNotificationsLoadMoreWrap" style="margin:10px 0 24px;text-align:center"></div>
+  <div class="portal-card">
+    <h3>Campagne pour mes abonnés</h3>
+    <p class="muted" style="font-size:12px">Envoyée aux clients qui suivent votre boutique. Catégorie « Promotions », priorité basse — non modifiables. Maximum 3 campagnes non annulées par 24 heures.</p>
+    <div id="merchantCampaignPreviewHost" style="font-size:12px;margin-bottom:8px"></div>
+    <form id="merchantCampaignForm" style="display:flex;flex-direction:column;gap:8px">
+      <div class="field"><label>Titre (2 à 140 caractères)</label><input class="input" name="title" maxlength="140" required></div>
+      <div class="field"><label>Message (2 à 1000 caractères)</label><textarea class="input" name="message" rows="3" maxlength="1000" required></textarea></div>
+      <div class="field"><label>Lien interne VinHT (facultatif)</label><input class="input" name="action_path" placeholder="/store.html?merchant=..."></div>
+      <div class="field"><label>Planifier l'envoi (facultatif)</label><input class="input" type="datetime-local" name="scheduled_at"></div>
+      <div id="merchantCampaignFormMsg" style="font-size:12px;display:none"></div>
+      <div class="toolbar-group"><button class="btn btn-dark btn-sm" type="submit">Envoyer à mes abonnés</button></div>
+    </form>
+  </div>
+  <div class="portal-card">
+    <div class="toolbar"><h3>Mes campagnes</h3><span class="badge" id="merchantCampaignsCount"></span></div>
+    <div id="merchantCampaignsHost"></div>
+    <div id="merchantCampaignsLoadMoreWrap" style="margin-top:10px;text-align:center"></div>
+  </div>
+</div></section></div></main><nav class="mobile-bottom-nav"><a class=" " href="../index.html"><i data-lucide="house"></i><span>Accueil</span></a><a class=" " href="../category.html"><i data-lucide="grid-2x2"></i><span>Catégories</span></a><a class=" " href="../wishlist.html"><i data-lucide="heart"></i><span>Favoris</span></a><a class=" mobile-cart" href="../cart.html"><i data-lucide="shopping-bag"></i><span>Panier</span><span class="cart-count">0</span></a><a class="active " href="../account.html"><i data-lucide="user"></i><span>Moi</span></a></nav><script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.js" defer></script><script src="../js/demo/market-demo-standalone.js"></script>
+  <script type="module" src="../js/main.js"></script>  <script src="../js/ui/siteLoader.js" defer></script>
+</body></html>

@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>VinHT — Marketplace haïtienne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+</head>
+<body class="vinht-v5-home">
+  <div class="vinht-site-loader" id="vinhtSiteLoader" role="status" aria-live="polite" aria-label="Chargement de VinHT">
+    <div class="vinht-loader-glass"><span class="vinht-loader-ring" aria-hidden="true"></span><strong>VinHT</strong><small>Chargement…</small></div>
+  </div>
+  <header class="v5-header">
+    <div class="v5-header-inner">
+      <a class="v5-logo" href="index.html" aria-label="VinHT accueil"><img src="assets/vinht-logo.png" alt="VinHT" decoding="async"></a>
+
+      <nav class="v5-main-nav" aria-label="Navigation principale">
+        <a href="category.html" class="v5-nav-link">Catégories <i data-lucide="chevron-down"></i></a>
+        <a href="products.html" class="v5-nav-link">Produits</a>
+        <a href="deals.html" class="v5-nav-link v5-offers">Offres <span class="v5-dot"></span></a>
+        <a href="new-arrivals.html" class="v5-nav-link">Nouveautés</a>
+        <a href="stores.html" class="v5-nav-link">Boutiques</a>
+      </nav>
+
+      <form class="v5-search" data-global-search>
+        <i data-lucide="search"></i>
+        <input type="search" data-search-input placeholder="Rechercher un produit, une marque ou une boutique…" autocomplete="off">
+        <button type="submit" aria-label="Rechercher"><i data-lucide="arrow-right"></i></button>
+      </form>
+      <button class="v5-search-toggle" type="button" aria-label="Rechercher" data-search-toggle><i data-lucide="search"></i></button>
+
+      <nav class="v5-icon-actions" aria-label="Actions compte">
+        <a href="wishlist.html" aria-label="Favoris"><i data-lucide="heart"></i></a>
+        <a href="account.html" data-account-link aria-label="Compte"><i data-lucide="user-round"></i></a>
+        <a href="cart.html" class="v5-cart-action" aria-label="Panier"><i data-lucide="shopping-cart"></i><span class="cart-count">0</span></a>
+      </nav>
+      <button class="v5-hamburger-btn" type="button" aria-label="Menu" data-hamburger-toggle="v5MobileNav" aria-controls="v5MobileNav"><i data-lucide="menu"></i></button>
+
+      <a class="v9-sell-header" href="merchant.html"><i data-lucide="store"></i><span>Vendre sur VinHT</span></a>
+    </div>
+  </header>
+  <div class="v5-mobile-nav" id="v5MobileNav" data-mobile-nav>
+    <div class="v5-mobile-nav-backdrop" data-mobile-nav-close></div>
+    <nav class="v5-mobile-nav-panel" aria-label="Menu principal">
+      <button class="v5-mobile-nav-close" type="button" aria-label="Fermer" data-mobile-nav-close><i data-lucide="x"></i></button>
+      <a href="category.html"><i data-lucide="grid-2x2"></i>Catégories</a>
+      <a href="products.html"><i data-lucide="package"></i>Produits</a>
+      <a href="deals.html"><i data-lucide="tag"></i>Offres <span class="v5-dot"></span></a>
+      <a href="new-arrivals.html"><i data-lucide="sparkles"></i>Nouveautés</a>
+      <a href="stores.html"><i data-lucide="store"></i>Boutiques</a>
+      <a href="merchant.html" class="v5-mobile-sell"><i data-lucide="store"></i>Vendre sur VinHT</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="v5-hero-wrap" aria-label="Bienvenue sur VinHT">
+      <div class="v5-hero-media">
+        <img src="assets/vinht-hero-liquid.webp" alt="VinHT — Tout ce qu’il vous faut" decoding="async">
+        <a class="v5-hotspot v5-hotspot-discover" href="category.html" aria-label="Découvrir VinHT"></a>
+        <a class="v5-hotspot v5-hotspot-offers" href="deals.html" aria-label="Voir les offres"></a>
+      </div>
+    </section>
+
+
+    <section class="v6-categories" aria-labelledby="v6-categories-title">
+      <div class="v6-category-intro">
+        <div class="v6-category-intro-copy">
+          <span class="v6-eyebrow">NOS CATÉGORIES</span>
+          <h2>Explorez tout l’univers VinHT</h2>
+          <p>Des milliers de produits, des marques locales et internationales, au même endroit.</p>
+        </div>
+        <div class="v6-category-intro-benefits" aria-label="Les avantages VinHT">
+          <div><i data-lucide="shopping-bag"></i><span>Tout en<br>un seul endroit</span></div>
+          <div><i data-lucide="badge-check"></i><span>Des produits<br>de qualité</span></div>
+          <div><i data-lucide="heart"></i><span>Des marques<br>de confiance</span></div>
+        </div>
+      </div>
+
+      <div class="v6-category-title-block">
+        <div class="v6-title-kicker"><span></span><b>NOS UNIVERS</b><span></span></div>
+        <h2 id="v6-categories-title">Catégories</h2>
+        <p>Explorez nos catégories et trouvez exactement ce qu’il vous faut.</p>
+      </div>
+
+      <div class="v6-category-filters" role="navigation" aria-label="Raccourcis catégories">
+        <a class="v6-filter active" href="category.html"><i data-lucide="grid-2x2"></i><span>Tout</span></a>
+        <a class="v6-filter" href="category.html?category=mode"><i data-lucide="shirt"></i><span>Mode</span></a>
+        <a class="v6-filter" href="category.html?category=electronique"><i data-lucide="headphones"></i><span>Électronique</span></a>
+        <a class="v6-filter" href="category.html?category=maison-deco"><i data-lucide="house"></i><span>Maison & Déco</span></a>
+        <a class="v6-filter" href="category.html?category=beaute-sante"><i data-lucide="sparkles"></i><span>Beauté & Santé</span></a>
+        <a class="v6-filter" href="category.html?category=supermarche"><i data-lucide="shopping-cart"></i><span>Supermarché</span></a>
+        <a class="v6-filter" href="category.html"><i data-lucide="ellipsis"></i><span>Autres</span></a>
+      </div>
+
+      <div class="v6-category-grid">
+        <a class="v6-category-card" href="category.html?category=mode">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/mode.png" alt="Mode" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Mode</strong>
+            <span>Vêtements, chaussures et accessoires</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=electronique">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/electronique.png" alt="Électronique" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Électronique</strong>
+            <span>Téléphones, ordinateurs et plus</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=maison-deco">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/maison-deco.png" alt="Maison & Déco" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Maison & Déco</strong>
+            <span>Meubles, décoration et aménagement</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=beaute-sante">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/beaute-sante.png" alt="Beauté & Santé" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Beauté & Santé</strong>
+            <span>Soins, maquillage et bien-être</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=supermarche">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/supermarche.png" alt="Supermarché" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Supermarché</strong>
+            <span>Produits alimentaires et du quotidien</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=bebe-enfants">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/bebe-enfants.png" alt="Bébé & Enfants" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Bébé & Enfants</strong>
+            <span>Tout pour leurs premiers pas</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=sports-loisirs">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/sports-loisirs.png" alt="Sports & Loisirs" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Sports & Loisirs</strong>
+            <span>Équipements et vêtements de sport</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=auto-moto">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/auto-moto.png" alt="Auto & Moto" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Auto & Moto</strong>
+            <span>Pièces, accessoires et entretien</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=high-tech-gaming">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/high-tech-gaming.png" alt="High-Tech & Gaming" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>High-Tech & Gaming</strong>
+            <span>Jeux vidéo, consoles et gadgets</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=bricolage-jardin">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/bricolage-jardin.png" alt="Bricolage & Jardin" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Bricolage & Jardin</strong>
+            <span>Outils, matériaux et jardinage</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=livres-culture-medias">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/livres-culture.png" alt="Livres, Culture & Médias" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Livres, Culture & Médias</strong>
+            <span>Livres, musique et divertissement</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=services-billets">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/services-billets.png" alt="Services & Billets" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Services & Billets</strong>
+            <span>Voyage, services digitaux et plus</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?category=produits-locaux">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/produits-locaux.png" alt="Produits Locaux" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Produits Locaux</strong>
+            <span>Le meilleur d’Haïti</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="stores.html">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/marques-officielles.png" alt="Marques Officielles" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Marques Officielles</strong>
+            <span>Vos marques préférées</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="new-arrivals.html">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/nouveautes.png" alt="Nouveautés" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Nouveautés</strong>
+            <span>Les derniers arrivages</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="deals.html">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/offres-speciales.png" alt="Offres Spéciales" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Offres Spéciales</strong>
+            <span>Réductions et bons plans</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?view=products&q=cadeau">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/idees-cadeaux.png" alt="Idées Cadeaux" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Idées Cadeaux</strong>
+            <span>Pour toutes les occasions</span>
+          </div>
+        </a>
+        <a class="v6-category-card" href="category.html?view=products&sort=popular">
+          <div class="v6-category-card-media">
+            <img src="assets/categories-v6/meilleures-ventes.png" alt="Meilleures ventes" loading="lazy" decoding="async">
+          </div>
+          <div class="v6-category-card-copy">
+            <strong>Meilleures ventes</strong>
+            <span>Les favoris de nos clients</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="v6-category-cta-row">
+        <a class="v6-all-categories" href="category.html">Voir toutes les catégories <i data-lucide="arrow-right"></i></a>
+        <img class="v6-support-hand" src="assets/categories-v6/supportons-entrepreneurs.png" alt="Supportons nos entrepreneurs !" decoding="async">
+      </div>
+
+      <div class="v6-category-trust">
+        <div><i data-lucide="truck"></i><span>Livraison partout en Haïti</span></div>
+        <div><i data-lucide="shield-check"></i><span>Achats 100% sécurisés</span></div>
+        <div><i data-lucide="heart"></i><span>Des milliers de clients satisfaits</span></div>
+      </div>
+    </section>
+
+    <section class="v7-products" aria-labelledby="v7-products-title">
+      <div class="v7-products-heading">
+        <div class="v7-title-kicker"><span></span><b>DÉCOUVREZ</b><span></span></div>
+        <h2 id="v7-products-title">Découvrez les produits</h2>
+        <p>Des sélections rien que pour vous, des offres intéressantes et les dernières nouveautés.</p>
+      </div>
+
+      <div class="v7-products-toolbar">
+        <div class="v7-product-tabs" role="tablist" aria-label="Filtrer les produits de l'accueil">
+          <button class="v7-product-tab active" type="button" role="tab" aria-selected="true" data-product-filter="all"><i data-lucide="sparkles"></i>Pour vous</button>
+          <button class="v7-product-tab" type="button" role="tab" aria-selected="false" data-product-filter="offer"><i data-lucide="badge-percent"></i>Offres</button>
+          <button class="v7-product-tab" type="button" role="tab" aria-selected="false" data-product-filter="new"><i data-lucide="package-open"></i>Nouveautés</button>
+        </div>
+        <a class="v7-products-viewall" href="category.html">Voir tout <i data-lucide="arrow-right"></i></a>
+      </div>
+
+      <div class="v7-product-grid" data-home-product-grid>
+        <div class="loading-state">Chargement des produits disponibles…</div>
+      </div>
+
+      <div class="v7-products-footer">
+        <a href="category.html?view=products" class="v7-more-products">Voir plus de produits <i data-lucide="arrow-right"></i></a>
+      </div>
+    </section>
+
+    <section class="v8-stores" aria-labelledby="v8-stores-title">
+      <div class="v8-stores-head">
+        <div>
+          <div class="v8-store-kicker"><i data-lucide="store"></i><span>BOUTIQUES</span></div>
+          <h2 id="v8-stores-title">Boutiques populaires</h2>
+          <p>Découvrez des vendeurs appréciés sur VinHT et explorez leurs produits.</p>
+        </div>
+        <a class="v8-stores-all" href="stores.html">Voir toutes les boutiques <i data-lucide="arrow-right"></i></a>
+      </div>
+
+      <div class="v8-store-grid" data-live-store-grid aria-label="Boutiques disponibles">
+        <div class="loading-state">Chargement des boutiques disponibles…</div>
+      </div>
+    </section>
+
+    <section class="v9-buy-modes" aria-labelledby="v9-buy-modes-title">
+      <div class="v9-section-heading">
+        <div class="v9-title-kicker"><span></span><b>ACHETEZ SUR VINHT</b><span></span></div>
+        <h2 id="v9-buy-modes-title">Acheter au détail ou en gros</h2>
+        <p>Que vous achetiez pour vous ou pour votre entreprise, VinHT vous aide à trouver la bonne offre.</p>
+      </div>
+
+      <div class="v9-buy-grid">
+        <article class="v9-buy-card v9-buy-retail">
+          <div class="v9-buy-copy">
+            <div class="v9-buy-icon"><i data-lucide="shopping-bag"></i></div>
+            <div>
+              <span class="v9-buy-label">POUR VOUS</span>
+              <h3>Acheter au détail</h3>
+              <p>Pour vos achats personnels et du quotidien.</p>
+            </div>
+            <ul>
+              <li><i data-lucide="check-circle-2"></i>Découvrez des milliers de produits</li>
+              <li><i data-lucide="check-circle-2"></i>Comparez les boutiques et les prix</li>
+              <li><i data-lucide="check-circle-2"></i>Choisissez vos produits en quelques clics</li>
+            </ul>
+            <a href="category.html?view=products&mode=retail" class="v9-buy-cta blue">Découvrir les produits <i data-lucide="arrow-right"></i></a>
+          </div>
+          <div class="v9-buy-visual v9-retail-visual" aria-hidden="true">
+            <img class="v10-approved-buy-art" loading="lazy" src="assets/home-v10-1/retail-approved.webp" alt="" decoding="async">
+          </div>
+        </article>
+
+        <article class="v9-buy-card v9-buy-wholesale">
+          <div class="v9-buy-copy">
+            <div class="v9-buy-icon"><i data-lucide="package-check"></i></div>
+            <div>
+              <span class="v9-buy-label">POUR LES PROS</span>
+              <h3>Acheter en gros</h3>
+              <p>Accédez aux offres avec prix grossistes et quantités minimales.</p>
+            </div>
+            <ul>
+              <li><i data-lucide="check-circle-2"></i>Prix de gros quand ils sont proposés</li>
+              <li><i data-lucide="check-circle-2"></i>MOQ clairement indiqué</li>
+              <li><i data-lucide="check-circle-2"></i>Produits de plusieurs marchands</li>
+            </ul>
+            <a href="category.html?view=products&mode=wholesale" class="v9-buy-cta red">Voir les offres en gros <i data-lucide="arrow-right"></i></a>
+          </div>
+          <div class="v9-buy-visual v9-wholesale-visual" aria-hidden="true">
+            <img class="v10-approved-buy-art" src="assets/home-v10-1/wholesale-approved.webp" alt="" loading="lazy" decoding="async">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="v9-trust" aria-labelledby="v9-trust-title">
+      <div class="v9-section-heading">
+        <div class="v9-title-kicker"><span></span><b>VOTRE CONFIANCE, NOTRE PRIORITÉ</b><span></span></div>
+        <h2 id="v9-trust-title">Achetez en toute confiance sur VinHT</h2>
+        <p>Des informations claires sur les vendeurs, les avis et les mécanismes de protection pour vous aider à choisir.</p>
+      </div>
+
+      <div class="v9-trust-system">
+        <article class="v9-trust-card sopi">
+          <div class="v9-trust-icon"><i data-lucide="shield-check"></i></div>
+          <div><span class="v9-trust-mini">INDICATEUR FOURNISSEUR</span><h3>SOPI</h3><p>Un indicateur de performance prévu pour aider à comparer les fournisseurs à mesure que les données réelles deviennent disponibles.</p></div>
+          <a href="help.html">En savoir plus <i data-lucide="arrow-right"></i></a>
+        </article>
+        <article class="v9-trust-card verified">
+          <div class="v9-trust-icon"><i data-lucide="badge-check"></i></div>
+          <div><span class="v9-trust-mini">IDENTITÉ MARCHAND</span><h3>Verified Pro</h3><p>Le badge est réservé aux vendeurs qui répondent aux critères de vérification VinHT. Aucun statut n’est attribué automatiquement.</p></div>
+          <a href="stores.html">Découvrir les boutiques <i data-lucide="arrow-right"></i></a>
+        </article>
+        <article class="v9-trust-card protection">
+          <div class="v9-trust-icon"><i data-lucide="shield"></i></div>
+          <div><span class="v9-trust-mini">PROTECTION TRANSACTION</span><h3>Protection VinHT</h3><p>Les règles de protection s’affichent lorsqu’elles s’appliquent à une transaction. VinHT ne présente pas une protection comme active si elle ne l’est pas.</p></div>
+          <a href="help.html">Voir comment ça marche <i data-lucide="arrow-right"></i></a>
+        </article>
+      </div>
+
+      <div class="v9-proof-grid">
+        <article class="v9-proof-card">
+          <div class="v9-proof-title"><i data-lucide="star"></i><h3>Avis des clients</h3></div>
+          <div class="v9-proof-empty">
+            <div><strong>0 avis pour le moment</strong><p>Les premiers avis apparaîtront ici après des achats réels et des évaluations publiées.</p><a href="category.html">Découvrir les produits <i data-lucide="arrow-right"></i></a></div>
+            <div class="v9-proof-ghost"><i data-lucide="message-square"></i></div>
+          </div>
+        </article>
+        <article class="v9-proof-card">
+          <div class="v9-proof-title"><i data-lucide="messages-square"></i><h3>Commentaires vérifiés</h3></div>
+          <div class="v9-proof-empty">
+            <div><strong>Aucun commentaire vérifié pour l’instant</strong><p>Les témoignages ne seront affichés que lorsqu’ils proviendront de données réellement disponibles.</p><a href="help.html">Comment fonctionnent les avis ? <i data-lucide="arrow-right"></i></a></div>
+            <div class="v9-proof-ghost"><i data-lucide="message-circle-more"></i></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="v9-ready v10-ready v10-2-ready" aria-label="Commencer avec VinHT">
+      <div class="v9-ready-copy">
+        <span>PRÊT À COMMENCER ?</span>
+        <h2>Prêt à commencer ?</h2>
+        <p>Rejoignez des milliers d’acheteurs et de vendeurs sur VinHT dès aujourd’hui.</p>
+      </div>
+      <div class="v9-ready-actions">
+        <a class="primary" href="account.html">Créer un compte</a>
+        <a class="secondary" href="merchant.html">Vendre sur VinHT</a>
+      </div>
+      <div class="v10-2-ready-signature" aria-hidden="true">
+        <strong>VinHT</strong>
+        <span>Pour un Haïti<br>qui avance !</span>
+        <b>♡</b>
+      </div>
+    </section>
+  </main>
+
+  <footer class="v9-footer v10-footer v10-2-footer">
+    <div class="v9-footer-glass">
+      <div class="v9-footer-grid">
+        <div class="v9-footer-brand">
+          <img class="v10-2-footer-logo" src="assets/home-v10-2/vinht-footer-white.png" alt="VinHT" loading="lazy" decoding="async">
+          <p>Tout ce qu’il vous faut.<br>Au même endroit.</p>
+          <div class="v9-socials" aria-label="Réseaux sociaux">
+            <a href="#" aria-label="Facebook" title="Facebook"><img src="assets/home-v10-1/social-facebook.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="Instagram" title="Instagram"><img src="assets/home-v10-1/social-instagram.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="YouTube" title="YouTube"><img src="assets/home-v10-1/social-youtube.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="LinkedIn" title="LinkedIn"><img src="assets/home-v10-1/social-linkedin.svg" alt="" aria-hidden="true"></a>
+          </div>
+          <span class="v9-footer-note">Supportons nos entrepreneurs !</span>
+          <span class="v10-2-red-underline" aria-hidden="true"></span>
+        </div>
+        <div class="v10-2-footer-col"><h4>Acheter</h4><a href="category.html">Catégories</a><a href="products.html">Produits</a><a href="deals.html">Offres</a><a href="new-arrivals.html">Nouveautés</a><a href="stores.html">Boutiques</a></div>
+        <div class="v10-2-footer-col"><h4>Mon compte</h4><a href="orders.html">Commandes</a><a href="wishlist.html">Favoris</a><a href="notifications.html">Notifications</a><a href="addresses.html">Adresses</a><a href="settings.html">Paramètres</a></div>
+        <div class="v10-2-footer-col"><h4>Vendre sur VinHT</h4><a href="merchant.html">Devenir marchand</a><a href="merchant-center.html">Merchant Center</a><a href="merchant.html">Plans</a><a href="help.html">Aide vendeur</a></div>
+        <div class="v10-2-footer-col"><h4>Aide & confiance</h4><a href="help.html">Centre d’aide</a><a href="help.html">Protection VinHT</a><a href="privacy.html">Confidentialité</a><a href="terms.html">Conditions d’utilisation</a></div>
+        <div class="v9-footer-payments v10-2-footer-payments">
+          <h4>Moyens de paiement</h4>
+          <div class="v10-payment-row" aria-label="Moyens de paiement disponibles">
+            <span class="v10-pay visa">VISA</span>
+            <span class="v10-pay mastercard"><i></i><b></b></span>
+            <span class="v10-pay flexi">FlexiCash</span>
+          </div>
+          <p><i data-lucide="headphones"></i><span>Un service client à votre écoute<br><small>Support client dédié</small></span></p>
+        </div>
+      </div>
+      <div class="v9-footer-bottom v10-2-footer-bottom">
+        <span>© 2026 VinHT. Tous droits réservés.</span>
+        <span>Un marché plus fort pour un Haïti plus prospère. <b>♡</b></span>
+        <span class="v10-2-lang"><img src="assets/home-v10-2/haiti-flag.svg" alt="Haïti"> <em>Français</em> <small>⌄</small></span>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="mobile-bottom-nav">
+    <a class="active" href="index.html"><i data-lucide="house"></i><span>Accueil</span></a>
+    <a href="category.html"><i data-lucide="grid-2x2"></i><span>Catégories</span></a>
+    <a href="wishlist.html"><i data-lucide="heart"></i><span>Favoris</span></a>
+    <a class="mobile-cart" href="cart.html"><i data-lucide="shopping-bag"></i><span>Panier</span><span class="cart-count">0</span></a>
+    <a href="account.html"><i data-lucide="user"></i><span>Moi</span></a>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.js" defer></script>
+  <script type="module" src="js/ui/homeProductTabs.js?v=20260920-live"></script>
+  <script type="module" src="js/main.js"></script>
+  <script src="js/ui/siteLoader.js" defer></script>
+</body>
+</html>

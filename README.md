@@ -1,5 +1,5 @@
-# VinHT — Administration Web
+# VinHT — Application Web
 
-Dépôt de présentation technique de l’application Web VinHT, préparé pour revue administrative et technique.
+Dépôt de présentation technique de VinHT destiné à la revue administrative.
 
-> Ce dépôt contient uniquement le périmètre Web de VinHT. Les travaux Mobile/Capacitor et les documents internes de développement sont volontairement exclus.
+Cette branche contient exclusivement le périmètre Web déployé : expérience client, espaces marchand, livreur et administration, ainsi que les services frontend réellement chargés par la production.

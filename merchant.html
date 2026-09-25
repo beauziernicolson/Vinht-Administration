@@ -1,0 +1,82 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Devenir marchand — VinHT</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+</head><body class="vinht-global-shell">
+  <div class="vinht-site-loader" id="vinhtSiteLoader" role="status" aria-live="polite" aria-label="Chargement de VinHT">
+    <div class="vinht-loader-glass"><span class="vinht-loader-ring" aria-hidden="true"></span><strong>VinHT</strong><small>Chargement…</small></div>
+  </div><header class="v5-header">
+    <div class="v5-header-inner">
+      <a class="v5-logo" href="index.html" aria-label="VinHT accueil"><img src="assets/vinht-logo.png" alt="VinHT" decoding="async"></a>
+
+      <nav class="v5-main-nav" aria-label="Navigation principale">
+        <a href="category.html" class="v5-nav-link">Catégories <i data-lucide="chevron-down"></i></a>
+        <a href="products.html" class="v5-nav-link">Produits</a>
+        <a href="deals.html" class="v5-nav-link v5-offers">Offres <span class="v5-dot"></span></a>
+        <a href="new-arrivals.html" class="v5-nav-link">Nouveautés</a>
+        <a href="stores.html" class="v5-nav-link">Boutiques</a>
+      </nav>
+
+      <form class="v5-search" data-global-search>
+        <i data-lucide="search"></i>
+        <input type="search" data-search-input placeholder="Rechercher un produit, une marque ou une boutique…" autocomplete="off">
+        <button type="submit" aria-label="Rechercher"><i data-lucide="arrow-right"></i></button>
+      </form>
+      <button class="v5-search-toggle" type="button" aria-label="Rechercher" data-search-toggle><i data-lucide="search"></i></button>
+
+      <nav class="v5-icon-actions" aria-label="Actions compte">
+        <a href="wishlist.html" aria-label="Favoris"><i data-lucide="heart"></i></a>
+        <a href="account.html" data-account-link aria-label="Compte"><i data-lucide="user-round"></i></a>
+        <a href="cart.html" class="v5-cart-action" aria-label="Panier"><i data-lucide="shopping-cart"></i><span class="cart-count">0</span></a>
+      </nav>
+      <button class="v5-hamburger-btn" type="button" aria-label="Menu" data-hamburger-toggle="v5MobileNav" aria-controls="v5MobileNav"><i data-lucide="menu"></i></button>
+
+      <a class="v9-sell-header" href="merchant.html"><i data-lucide="store"></i><span>Vendre sur VinHT</span></a>
+    </div>
+  </header>
+  <div class="v5-mobile-nav" id="v5MobileNav" data-mobile-nav>
+    <div class="v5-mobile-nav-backdrop" data-mobile-nav-close></div>
+    <nav class="v5-mobile-nav-panel" aria-label="Menu principal">
+      <button class="v5-mobile-nav-close" type="button" aria-label="Fermer" data-mobile-nav-close><i data-lucide="x"></i></button>
+      <a href="category.html"><i data-lucide="grid-2x2"></i>Catégories</a>
+      <a href="products.html"><i data-lucide="package"></i>Produits</a>
+      <a href="deals.html"><i data-lucide="tag"></i>Offres <span class="v5-dot"></span></a>
+      <a href="new-arrivals.html"><i data-lucide="sparkles"></i>Nouveautés</a>
+      <a href="stores.html"><i data-lucide="store"></i>Boutiques</a>
+      <a href="merchant.html" class="v5-mobile-sell"><i data-lucide="store"></i>Vendre sur VinHT</a>
+    </nav>
+  </div><main><section class="merchant-hero"><div class="container hero-grid"><div><span class="portal-kicker">Vendre sur VinHT</span><h1>Votre boutique.<br><span class="blue">Plus de clients.</span><br><span class="red">Plus de contrôle.</span></h1><p>Producteur, revendeur ou vendeur : créez votre présence sur la marketplace et gérez produits, stock et commandes dans un espace dédié.</p><div class="trust-mini"><span>Produits soumis à approbation</span><span>B2C + B2B</span><span>Stock réel</span></div><div class="hero-actions"><div class="hero-cta-group"><a class="btn btn-blue" href="merchant/onboarding.html">Démarrage rapide (1 min)</a><small>Parcours guidé étape par étape : profil, KYC, paiement, premier produit.</small></div><div class="hero-cta-group"><a class="btn btn-outline-blue" href="#apply">Envoyer ma demande</a><small>Remplir directement le formulaire de demande marchand.</small></div><a class="btn btn-ghost" href="merchant/index.html">Voir l’espace marchand</a></div></div><div class="visual"><img src="assets/merchant-hero.jpg" alt="Espace marchand VinHT" decoding="async"></div></div></section><section class="section" id="types"><div class="container"><div class="section-head"><div><h2>Choisissez votre profil</h2><small>Trois types de marchands VinHT.</small></div></div><div class="types"><div class="surface type-card"><div class="iconcircle"><i data-lucide="sprout"></i></div><h3>Producteur</h3><p>Vous fabriquez ou produisez les articles que vous vendez.</p></div><div class="surface type-card"><div class="iconcircle"><i data-lucide="store"></i></div><h3>Revendeur</h3><p>Vous achetez des produits, gérez votre propre stock et les revendez à vos clients.</p></div><div class="surface type-card"><div class="iconcircle"><i data-lucide="shopping-bag"></i></div><h3>Vendeur</h3><p>Vous vendez des produits ou services de votre activité, sans production ni achat en gros structuré.</p></div></div></div></section><section class="section"><div class="container"><div class="section-head"><div><h2>Plans marchands</h2><small>Chargés depuis les règles VinHT actives.</small></div></div><div class="plans" id="planCards"></div></div></section><section class="section" id="apply"><div class="container"><div class="section-head"><div><h2>Votre demande marchand</h2><small>Une seule demande en attente par compte.</small></div></div><div id="merchantState" class="surface" style="display:none;padding:20px;margin-bottom:12px"></div><div id="merchantKycHost" class="surface" style="display:none;padding:20px;margin-bottom:12px"></div><form id="merchantForm" class="surface" style="padding:20px;display:none"><div class="customer-grid"><div class="field"><label for="maFullName">Nom complet</label><input id="maFullName" name="full_name"></div><div class="field"><label for="maEmail">Email</label><input id="maEmail" name="email" type="email"></div><div class="field"><label for="maPhone">Téléphone</label><input id="maPhone" name="phone" type="tel"></div><div class="field"><label for="maWhatsapp">WhatsApp</label><input id="maWhatsapp" name="whatsapp_number" type="tel"></div><div class="field"><label for="maShopName">Nom boutique *</label><input id="maShopName" name="shop_name" required></div><div class="field"><label for="maType">Type *</label><select id="maType" name="merchant_type" required><option value="">Choisir…</option><option value="producteur">Producteur</option><option value="revendeur">Revendeur</option><option value="vendeur">Vendeur</option></select></div><div class="field"><label for="maPlan">Plan *</label><select id="maPlan" name="requested_plan_code" required><option value="">Choisir…</option></select></div></div><div class="field" style="margin-top:12px"><label for="maDesc">Description boutique</label><textarea id="maDesc" name="shop_description"></textarea></div><div class="field" style="margin-top:12px"><label>Catégories</label><div id="maCategories" style="display:flex;flex-wrap:wrap;gap:8px"></div></div><div class="field" style="margin-top:12px"><label for="maSocial">Site / réseau social</label><input id="maSocial" name="social" type="url"></div><div id="merchantMsg" class="green-note" style="display:none;background:#fff0f3;border-color:#f7c9d2;color:#b0122a"></div><button class="btn btn-blue" type="submit" id="merchantSubmit" style="margin-top:14px">Envoyer ma demande</button></form></div></section><section class="section"><div class="container cta-band"><div><h2>Déjà marchand ?</h2><p>Ouvrez votre dashboard pour gérer boutique, produits, commandes et revenus.</p></div><a class="btn" href="merchant/index.html">Espace marchand <i data-lucide="arrow-right"></i></a></div></section></main><div class="feature-strip"><div class="container features"><div class="feature"><div class="ico"><i data-lucide="truck"></i></div><div><strong>Livraison flexible</strong><small>À domicile ou adresse personnalisée.</small></div></div><div class="feature"><div class="ico"><i data-lucide="credit-card"></i></div><div><strong>Paiement flexible</strong><small>FlexiCash, FlexiCard, solde VinHT.</small></div></div><div class="feature"><div class="ico"><i data-lucide="shield-check"></i></div><div><strong>Produits approuvés</strong><small>Catalogue public soumis à validation.</small></div></div><div class="feature"><div class="ico"><i data-lucide="headphones"></i></div><div><strong>Support VinHT</strong><small>Centre d’aide client et marchand.</small></div></div></div></div><footer class="v9-footer v10-footer v10-2-footer">
+    <div class="v9-footer-glass">
+      <div class="v9-footer-grid">
+        <div class="v9-footer-brand">
+          <img class="v10-2-footer-logo" src="assets/home-v10-2/vinht-footer-white.png" alt="VinHT" loading="lazy" decoding="async">
+          <p>Tout ce qu’il vous faut.<br>Au même endroit.</p>
+          <div class="v9-socials" aria-label="Réseaux sociaux">
+            <a href="#" aria-label="Facebook" title="Facebook"><img src="assets/home-v10-1/social-facebook.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="Instagram" title="Instagram"><img src="assets/home-v10-1/social-instagram.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="YouTube" title="YouTube"><img src="assets/home-v10-1/social-youtube.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="LinkedIn" title="LinkedIn"><img src="assets/home-v10-1/social-linkedin.svg" alt="" aria-hidden="true"></a>
+          </div>
+          <span class="v9-footer-note">Supportons nos entrepreneurs !</span>
+          <span class="v10-2-red-underline" aria-hidden="true"></span>
+        </div>
+        <div class="v10-2-footer-col"><h4>Acheter</h4><a href="category.html">Catégories</a><a href="products.html">Produits</a><a href="deals.html">Offres</a><a href="new-arrivals.html">Nouveautés</a><a href="stores.html">Boutiques</a></div>
+        <div class="v10-2-footer-col"><h4>Mon compte</h4><a href="orders.html">Commandes</a><a href="wishlist.html">Favoris</a><a href="notifications.html">Notifications</a><a href="addresses.html">Adresses</a><a href="settings.html">Paramètres</a></div>
+        <div class="v10-2-footer-col"><h4>Vendre sur VinHT</h4><a href="merchant.html">Devenir marchand</a><a href="merchant-center.html">Merchant Center</a><a href="merchant.html">Plans</a><a href="help.html">Aide vendeur</a></div>
+        <div class="v10-2-footer-col"><h4>Aide & confiance</h4><a href="help.html">Centre d’aide</a><a href="help.html">Protection VinHT</a><a href="privacy.html">Confidentialité</a><a href="terms.html">Conditions d’utilisation</a></div>
+        <div class="v9-footer-payments v10-2-footer-payments">
+          <h4>Moyens de paiement</h4>
+          <div class="v10-payment-row" aria-label="Moyens de paiement disponibles">
+            <span class="v10-pay visa">VISA</span>
+            <span class="v10-pay mastercard"><i></i><b></b></span>
+            <span class="v10-pay flexi">FlexiCash</span>
+          </div>
+          <p><i data-lucide="headphones"></i><span>Un service client à votre écoute<br><small>Support client dédié</small></span></p>
+        </div>
+      </div>
+      <div class="v9-footer-bottom v10-2-footer-bottom">
+        <span>© 2026 VinHT. Tous droits réservés.</span>
+        <span>Un marché plus fort pour un Haïti plus prospère. <b>♡</b></span>
+        <span class="v10-2-lang"><img src="assets/home-v10-2/haiti-flag.svg" alt="Haïti"> <em>Français</em> <small>⌄</small></span>
+      </div>
+    </div>
+  </footer><nav class="mobile-bottom-nav"><a class=" " href="index.html"><i data-lucide="house"></i><span>Accueil</span></a><a class=" " href="category.html"><i data-lucide="grid-2x2"></i><span>Catégories</span></a><a class=" " href="wishlist.html"><i data-lucide="heart"></i><span>Favoris</span></a><a class=" mobile-cart" href="cart.html"><i data-lucide="shopping-bag"></i><span>Panier</span><span class="cart-count">0</span></a><a class="active " href="account.html"><i data-lucide="user"></i><span>Moi</span></a></nav><script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.js" defer></script><script src="js/demo/market-demo-standalone.js"></script>
+  <script type="module" src="js/main.js"></script>  <script src="js/ui/siteLoader.js" defer></script>
+</body></html>

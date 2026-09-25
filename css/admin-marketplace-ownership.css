@@ -1,0 +1,14 @@
+/* Marketplace Admin ownership — local accessibility hardening only. */
+#adminMarketplaceOwnershipHost [data-revoke-auth],
+#marketplaceQaHost [data-revoke-auth] {
+  color: #9f1028;
+  border-color: #9f1028;
+  background: #fff;
+}
+
+#adminMarketplaceOwnershipHost [data-revoke-auth]:hover,
+#marketplaceQaHost [data-revoke-auth]:hover {
+  color: #7e0c20;
+  border-color: #7e0c20;
+  background: #fff4f6;
+}

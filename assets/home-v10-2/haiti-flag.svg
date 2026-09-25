@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 24" role="img" aria-label="Drapeau d’Haïti">
+  <rect width="36" height="12" fill="#00209F"/>
+  <rect y="12" width="36" height="12" fill="#D21034"/>
+  <rect x="11" y="6.2" width="14" height="11.6" rx=".7" fill="#fff"/>
+  <path d="M18 8.1v6.6" stroke="#8B5A2B" stroke-width=".8"/>
+  <path d="M18 8.2c-1.8-1.5-3.2-1.3-4.3-.3 1.6-.1 2.8.5 3.9 1.5-2-.5-3.5.1-4.2 1.2 1.8-.4 3.2.1 4.4 1.1M18 8.2c1.8-1.5 3.2-1.3 4.3-.3-1.6-.1-2.8.5-3.9 1.5 2-.5 3.5.1 4.2 1.2-1.8-.4-3.2.1-4.4 1.1" fill="none" stroke="#188A4B" stroke-width=".65" stroke-linecap="round"/>
+  <path d="M14 15.4h8" stroke="#1A62B7" stroke-width=".7"/><path d="M15 14.5h6" stroke="#D21034" stroke-width=".7"/>
+</svg>

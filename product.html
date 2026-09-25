@@ -1,0 +1,159 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Produit — VinHT</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="product-v13.css">  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+</head><body class="vinht-global-shell" data-product-v12>
+  <div class="vinht-site-loader" id="vinhtSiteLoader" role="status" aria-live="polite" aria-label="Chargement de VinHT">
+    <div class="vinht-loader-glass"><span class="vinht-loader-ring" aria-hidden="true"></span><strong>VinHT</strong><small>Chargement…</small></div>
+  </div><header class="v5-header">
+    <div class="v5-header-inner">
+      <a class="v5-logo" href="index.html" aria-label="VinHT accueil"><img src="assets/vinht-logo.png" alt="VinHT" decoding="async"></a>
+
+      <nav class="v5-main-nav" aria-label="Navigation principale">
+        <a href="category.html" class="v5-nav-link">Catégories <i data-lucide="chevron-down"></i></a>
+        <a href="products.html" class="v5-nav-link">Produits</a>
+        <a href="deals.html" class="v5-nav-link v5-offers">Offres <span class="v5-dot"></span></a>
+        <a href="new-arrivals.html" class="v5-nav-link">Nouveautés</a>
+        <a href="stores.html" class="v5-nav-link">Boutiques</a>
+      </nav>
+
+      <form class="v5-search" data-global-search>
+        <i data-lucide="search"></i>
+        <input type="search" data-search-input placeholder="Rechercher un produit, une marque ou une boutique…" autocomplete="off">
+        <button type="submit" aria-label="Rechercher"><i data-lucide="arrow-right"></i></button>
+      </form>
+      <button class="v5-search-toggle" type="button" aria-label="Rechercher" data-search-toggle><i data-lucide="search"></i></button>
+
+      <nav class="v5-icon-actions" aria-label="Actions compte">
+        <a href="wishlist.html" aria-label="Favoris"><i data-lucide="heart"></i></a>
+        <a href="account.html" data-account-link aria-label="Compte"><i data-lucide="user-round"></i></a>
+        <a href="cart.html" class="v5-cart-action" aria-label="Panier"><i data-lucide="shopping-cart"></i><span class="cart-count">0</span></a>
+      </nav>
+      <button class="v5-hamburger-btn" type="button" aria-label="Menu" data-hamburger-toggle="v5MobileNav" aria-controls="v5MobileNav"><i data-lucide="menu"></i></button>
+
+      <a class="v9-sell-header" href="merchant.html"><i data-lucide="store"></i><span>Vendre sur VinHT</span></a>
+    </div>
+  </header>
+  <div class="v5-mobile-nav" id="v5MobileNav" data-mobile-nav>
+    <div class="v5-mobile-nav-backdrop" data-mobile-nav-close></div>
+    <nav class="v5-mobile-nav-panel" aria-label="Menu principal">
+      <button class="v5-mobile-nav-close" type="button" aria-label="Fermer" data-mobile-nav-close><i data-lucide="x"></i></button>
+      <a href="category.html"><i data-lucide="grid-2x2"></i>Catégories</a>
+      <a href="products.html"><i data-lucide="package"></i>Produits</a>
+      <a href="deals.html"><i data-lucide="tag"></i>Offres <span class="v5-dot"></span></a>
+      <a href="new-arrivals.html"><i data-lucide="sparkles"></i>Nouveautés</a>
+      <a href="stores.html"><i data-lucide="store"></i>Boutiques</a>
+      <a href="merchant.html" class="v5-mobile-sell"><i data-lucide="store"></i>Vendre sur VinHT</a>
+    </nav>
+  </div><main class="v13-product-page">
+  <div class="container v13-product-container">
+    <nav class="v13-breadcrumb" id="pdpBreadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span>›</span><strong>Produit</strong></nav><div id="pdpState" style="display:none"></div>
+
+    <section class="v13-product-stage v12-pdp-grid" id="pdpLayout" style="display:none">
+      <div class="v13-gallery-panel v12-gallery-card">
+        <div class="v13-main-media v12-main-media">
+          <div class="v13-media-badges v12-media-badge" id="pdpMediaBadges"><span>VinHT</span></div>
+          <button class="v13-share" type="button" id="pdpShareBtn" aria-label="Partager ce produit"><i data-lucide="share-2"></i></button>
+          <img id="pdpMainImg" src="assets/abstract-brand.jpg" alt="" decoding="async">
+        </div>
+        <div class="v13-gallery-meta"><span><i data-lucide="images"></i> Jusqu’à 5 photos</span><span><b id="pdpPhotoCount">1</b> vue(s)</span></div>
+        <div class="v13-thumbs v12-thumbs" id="pdpThumbs" aria-label="Galerie produit"></div>
+      </div>
+
+      <aside class="v13-buy-panel v12-info-card product-info">
+        <div class="v13-kicker v12-kicker"><span id="pdpCategoryLabel">Marketplace</span><span class="v13-condition v12-chip red" id="pdpConditionLabel">Neuf</span></div>
+        <h1 id="pdpName">Produit VinHT</h1>
+        <p class="v13-tagline" id="pdpTagline"></p>
+
+        <div class="v13-meta-row v12-product-meta">
+          <div class="v13-rating" id="pdpRating">Nouveau produit</div>
+          <span id="pdpReviewMeta">0 avis</span>
+          <span class="v13-meta-sep">•</span>
+          <div>Vendu par <strong id="pdpMerchant">Marchand VinHT</strong> <span class="badge blue" id="pdpMerchantActive" style="display:none">Actif</span></div>
+        </div>
+
+        <div class="v13-price-block v12-price-box price-box">
+          <div class="v13-price-line v12-price-main">
+            <span class="label">Prix</span>
+            <strong id="pdpRetail">—</strong>
+            <span class="v12-compare" id="pdpCompare"></span>
+            <span class="v12-discount" id="pdpDiscount" style="display:none"></span>
+          </div>
+          <div id="pdpPromotions" style="margin:8px 0"></div>
+          <div class="v13-wholesale v12-wholesale-box" id="pdpWholesaleSide" style="display:none"><div><small>Prix grossiste</small><strong id="pdpWholesale">—</strong></div><small id="pdpMoq"></small></div>
+        </div>
+
+        <div class="v13-tier-row v12-tier-row" id="pdpTierRow" style="display:none"><button class="btn btn-blue btn-sm" type="button" id="pdpTierRetail">Détail</button><button class="btn btn-outline-blue btn-sm" type="button" id="pdpTierWholesale">Gros</button></div>
+        <div class="v13-variants v12-variant-wrap" id="pdpVariants"></div>
+
+        <div class="v13-status-row v12-info-grid">
+          <div class="v13-status" id="pdpMoqBox" style="display:none"><i data-lucide="boxes"></i><div><strong>MOQ</strong><span id="pdpMoqQty">—</span></div></div>
+          <div class="v13-status"><i data-lucide="circle-check"></i><div><strong id="pdpStockLabel">—</strong><span id="pdpStockQty"></span></div></div>
+          <div class="v13-status"><i data-lucide="truck"></i><div><strong>Livraison</strong><span id="pdpDelivery">—</span></div></div>
+        </div>
+
+        <div class="v13-qty-line v12-qty-row qtyrow"><div><strong>Quantité</strong><span id="pdpTierHint">Détail</span></div><div class="v13-qty v12-qty qty"><button type="button" data-dir="dec" aria-label="Diminuer"><i data-lucide="minus"></i></button><span>1</span><button type="button" data-dir="inc" aria-label="Augmenter"><i data-lucide="plus"></i></button></div></div>
+
+        <div class="v13-actions v12-actions buyrow">
+          <button class="v13-add btn btn-blue" type="button" id="pdpAddCart"><i data-lucide="shopping-bag"></i> Ajouter au panier</button>
+          <button class="v13-buy btn btn-red" type="button" id="pdpBuyNow"><i data-lucide="zap"></i> Acheter maintenant</button>
+        </div>
+        <button class="v13-wishlist btn btn-outline-blue" type="button" id="pdpWishlistBtn" aria-pressed="false"><i data-lucide="heart"></i><span data-heart-label>Ajouter à la wishlist</span></button>
+
+        <div class="v13-seller-strip v12-seller-card seller-card">
+          <div class="v13-seller-summary"><div class="v13-seller-logo v12-seller-logo" id="pdpSellerLogo">V</div><div><small>Vendu par</small><h3 id="pdpSellerName">Marchand VinHT</h3><div><span id="pdpMRating">—</span> · <span id="pdpMRatingCount">0</span> avis · <span id="pdpMZone">—</span></div></div></div>
+          <div class="v13-seller-score"><strong id="pdpTrust">—</strong><small id="pdpTrustLevel">Confiance</small></div>
+          <div class="v13-seller-actions v12-seller-actions"><a class="btn btn-ghost btn-sm" id="pdpStoreLink" href="stores.html"><i data-lucide="store"></i> Visiter la boutique</a><a class="btn btn-outline-blue btn-sm" href="support.html"><i data-lucide="message-circle"></i> Contacter</a></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="v13-details v12-tabs-wrap" id="pdpDescSection" style="display:none">
+      <div class="v13-tabs v12-tabs" role="tablist"><button class="active" type="button" data-v12-tab="description">Description</button><button type="button" data-v12-tab="specs">Caractéristiques</button><button type="button" data-v12-tab="delivery">Livraison & retours</button><button type="button" data-v12-tab="reviews">Avis clients</button></div>
+      <div class="v13-tab-panel v12-tab-panel active" data-v12-panel="description"><h3>À propos de ce produit</h3><p id="pdpDescription"></p></div>
+      <div class="v13-tab-panel v12-tab-panel" data-v12-panel="specs"><h3>Caractéristiques</h3><div class="v12-spec-table" id="pdpSpecTable"></div><ul id="pdpSpecList"></ul></div>
+      <div class="v13-tab-panel v12-tab-panel" data-v12-panel="delivery"><h3>Livraison, retrait et protection</h3><div class="v12-delivery-grid"><div class="v12-delivery-card"><i data-lucide="truck"></i><strong>Livraison</strong><p id="pdpDeliveryCard">Selon la zone du marchand.</p></div><div class="v12-delivery-card"><i data-lucide="rotate-ccw"></i><strong>Retours</strong><p>Les conditions applicables dépendent du produit, du marchand et des règles VinHT.</p></div><div class="v12-delivery-card"><i data-lucide="shield-check"></i><strong>Protection VinHT</strong><p>Les protections sont affichées uniquement lorsqu’elles sont réellement actives.</p></div></div></div>
+      <div class="v13-tab-panel v12-tab-panel" data-v12-panel="reviews"><h3>Avis clients</h3><div class="v12-review-layout"><div class="v12-review-summary"><div class="v12-review-score" id="pdpReviewScore">0.0</div><div class="v12-review-stars" id="pdpReviewStars">☆☆☆☆☆</div><small><span id="pdpReviewCount">0</span> évaluations</small><div class="v12-review-bars" id="pdpReviewBars"></div></div><div class="v12-review-list"><div><i data-lucide="message-square-text"></i><strong id="pdpReviewEmptyTitle">Aucun commentaire texte vérifié</strong><p id="pdpReviewEmptyText">Les commentaires apparaîtront ici quand ils seront disponibles.</p></div></div></div></div>
+    </section>
+
+    <section class="v13-related v12-section" id="pdpSponsoredSection" style="display:none"><div class="v12-section-head"><div><h2>Sponsorisé</h2><p>Produits mis en avant par des marchands</p></div></div><div class="v12-related-grid" id="pdpSponsoredGrid"></div></section>
+    <section class="v13-related v12-section" id="pdpSimilarSection" style="display:none"><div class="v12-section-head"><div><h2>Produits similaires</h2><p>Dans la même catégorie</p></div><a id="pdpSimilarLink" href="category.html">Voir la catégorie →</a></div><div class="v12-related-grid" id="pdpSimilarGrid"></div></section>
+    <section class="v13-related v12-section" id="pdpMerchantProductsSection" style="display:none"><div class="v12-section-head"><div><h2>Plus de cette boutique</h2><p id="pdpMerchantProductsSubtitle">Découvrez d’autres produits du marchand.</p></div><a id="pdpMerchantMoreLink" href="stores.html">Voir la boutique →</a></div><div class="v12-related-grid" id="pdpMerchantProductsGrid"></div></section>
+  </div>
+</main>
+<footer class="v9-footer v10-footer v10-2-footer">
+    <div class="v9-footer-glass">
+      <div class="v9-footer-grid">
+        <div class="v9-footer-brand">
+          <img class="v10-2-footer-logo" src="assets/home-v10-2/vinht-footer-white.png" alt="VinHT" loading="lazy" decoding="async">
+          <p>Tout ce qu’il vous faut.<br>Au même endroit.</p>
+          <div class="v9-socials" aria-label="Réseaux sociaux">
+            <a href="#" aria-label="Facebook" title="Facebook"><img src="assets/home-v10-1/social-facebook.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="Instagram" title="Instagram"><img src="assets/home-v10-1/social-instagram.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="YouTube" title="YouTube"><img src="assets/home-v10-1/social-youtube.svg" alt="" aria-hidden="true"></a>
+            <a href="#" aria-label="LinkedIn" title="LinkedIn"><img src="assets/home-v10-1/social-linkedin.svg" alt="" aria-hidden="true"></a>
+          </div>
+          <span class="v9-footer-note">Supportons nos entrepreneurs !</span>
+          <span class="v10-2-red-underline" aria-hidden="true"></span>
+        </div>
+        <div class="v10-2-footer-col"><h4>Acheter</h4><a href="category.html">Catégories</a><a href="products.html">Produits</a><a href="deals.html">Offres</a><a href="new-arrivals.html">Nouveautés</a><a href="stores.html">Boutiques</a></div>
+        <div class="v10-2-footer-col"><h4>Mon compte</h4><a href="orders.html">Commandes</a><a href="wishlist.html">Favoris</a><a href="notifications.html">Notifications</a><a href="addresses.html">Adresses</a><a href="settings.html">Paramètres</a></div>
+        <div class="v10-2-footer-col"><h4>Vendre sur VinHT</h4><a href="merchant.html">Devenir marchand</a><a href="merchant-center.html">Merchant Center</a><a href="merchant.html">Plans</a><a href="help.html">Aide vendeur</a></div>
+        <div class="v10-2-footer-col"><h4>Aide & confiance</h4><a href="help.html">Centre d’aide</a><a href="help.html">Protection VinHT</a><a href="privacy.html">Confidentialité</a><a href="terms.html">Conditions d’utilisation</a></div>
+        <div class="v9-footer-payments v10-2-footer-payments">
+          <h4>Moyens de paiement</h4>
+          <div class="v10-payment-row" aria-label="Moyens de paiement disponibles">
+            <span class="v10-pay visa">VISA</span>
+            <span class="v10-pay mastercard"><i></i><b></b></span>
+            <span class="v10-pay flexi">FlexiCash</span>
+          </div>
+          <p><i data-lucide="headphones"></i><span>Un service client à votre écoute<br><small>Support client dédié</small></span></p>
+        </div>
+      </div>
+      <div class="v9-footer-bottom v10-2-footer-bottom">
+        <span>© 2026 VinHT. Tous droits réservés.</span>
+        <span>Un marché plus fort pour un Haïti plus prospère. <b>♡</b></span>
+        <span class="v10-2-lang"><img src="assets/home-v10-2/haiti-flag.svg" alt="Haïti"> <em>Français</em> <small>⌄</small></span>
+      </div>
+    </div>
+  </footer><nav class="mobile-bottom-nav"><a class="active " href="index.html"><i data-lucide="house"></i><span>Accueil</span></a><a class=" " href="category.html"><i data-lucide="grid-2x2"></i><span>Catégories</span></a><a class=" " href="wishlist.html"><i data-lucide="heart"></i><span>Favoris</span></a><a class=" mobile-cart" href="cart.html"><i data-lucide="shopping-bag"></i><span>Panier</span><span class="cart-count">0</span></a><a class=" " href="account.html"><i data-lucide="user"></i><span>Moi</span></a></nav><script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.js" defer></script>
+  <script type="module" src="js/pages/productV13.js?v=20260920live"></script>
+  <script type="module" src="js/main.js?v=20260906e"></script>  <script src="js/ui/siteLoader.js" defer></script>
+</body></html>

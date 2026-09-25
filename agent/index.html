@@ -1,0 +1,33 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Centre Agent — VinHT</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="../styles.css">  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+</head><body class="portal-theme-merchant" data-agent-page="center">
+  <div class="vinht-site-loader" id="vinhtSiteLoader" role="status" aria-live="polite" aria-label="Chargement de VinHT">
+    <div class="vinht-loader-glass"><span class="vinht-loader-ring" aria-hidden="true"></span><strong>VinHT</strong><small>Chargement…</small></div>
+  </div><header class="portal-global-topbar"><div class="portal-global-inner">
+<a class="portal-global-logo" href="../index.html"><img src="../assets/vinht-logo.png" alt="VinHT" decoding="async"><span>Centre Agent</span></a>
+<a class="portal-global-back" href="../index.html"><i data-lucide="arrow-left"></i> Retour à la marketplace</a>
+<nav class="portal-global-actions" aria-label="Actions VinHT"><a href="../help.html" aria-label="Aide"><i data-lucide="circle-help"></i></a><a href="../account.html" aria-label="Compte"><i data-lucide="user-round"></i></a></nav>
+</div></header><main class="portal-shell"><div class="container portal-layout ac-layout">
+  <aside class="portal-sidebar ac-sidebar">
+    <div id="acAgentHeader" class="ac-agent-header"></div>
+    <div class="ac-onboarding-block" style="margin-bottom:10px">
+      <button type="button" class="btn btn-outline-blue btn-sm" id="acOpenOnboardingBtn" style="width:100%"><i data-lucide="user-plus"></i> Nouveaux marchands</button>
+    </div>
+    <div class="ac-merchants-block">
+      <div class="ac-merchants-head">
+        <h3>Mes marchands</h3>
+      </div>
+      <div class="ac-merchant-search"><i data-lucide="search"></i><input type="search" id="acMerchantSearch" placeholder="Filtrer par nom…" autocomplete="off"></div>
+      <div id="acMerchantListHost" class="ac-merchant-list"></div>
+      <div id="acMerchantLoadMoreWrap" class="ac-merchant-loadmore"></div>
+    </div>
+  </aside>
+  <section class="portal-main ac-main">
+    <div data-agent-gate hidden class="portal-card"></div>
+    <div data-agent-content hidden>
+      <div id="acContentHost"></div>
+    </div>
+  </section>
+</div></main><script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.js" defer></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js" defer></script>
+  <script type="module" src="../js/main.js"></script>  <script src="../js/ui/siteLoader.js" defer></script>
+</body></html>

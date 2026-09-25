@@ -1,0 +1,59 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Promotions — VinHT</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="../styles.css">  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+</head><body class="portal-theme-merchant" data-merchant-page="promotions">
+  <div class="vinht-site-loader" id="vinhtSiteLoader" role="status" aria-live="polite" aria-label="Chargement de VinHT">
+    <div class="vinht-loader-glass"><span class="vinht-loader-ring" aria-hidden="true"></span><strong>VinHT</strong><small>Chargement…</small></div>
+  </div><header class="portal-global-topbar"><div class="portal-global-inner">
+<a class="portal-global-logo" href="../index.html"><img src="../assets/vinht-logo.png" alt="VinHT" decoding="async"><span>Espace marchand</span></a>
+<a class="portal-global-back" href="../index.html"><i data-lucide="arrow-left"></i> Retour à la marketplace</a>
+<form class="portal-global-search" data-global-search><i data-lucide="search"></i><input type="search" data-search-input placeholder="Rechercher sur VinHT…" autocomplete="off"><button type="submit" aria-label="Rechercher"><i data-lucide="arrow-right"></i></button></form>
+<nav class="portal-global-actions" aria-label="Actions VinHT"><a href="../notifications.html" aria-label="Notifications"><i data-lucide="bell"></i><span class="nav-badge" data-notification-badge></span></a><a href="../help.html" aria-label="Aide"><i data-lucide="circle-help"></i></a><a href="../account.html" aria-label="Compte"><i data-lucide="user-round"></i></a></nav>
+</div></header><main class="portal-shell"><div class="container portal-layout"><aside class="portal-sidebar"><div class="portal-user"><div class="portal-avatar" data-merchant-initial>V</div><div><strong data-merchant-name>Ma boutique</strong><small data-merchant-type>Marchand VinHT</small></div></div><nav class="portal-nav"><a class="" href="index.html"><i data-lucide="layout-dashboard"></i>Dashboard</a><a class="" href="products.html"><i data-lucide="boxes"></i>Produits</a><a class="" href="product-new.html"><i data-lucide="package-plus"></i>Ajouter produit</a><a class="" href="inventory.html"><i data-lucide="warehouse"></i>Inventaire</a><a class="" href="orders.html"><i data-lucide="clipboard-list"></i>Commandes</a><a class="" href="revenue.html"><i data-lucide="wallet-cards"></i>Revenus</a><a class="" href="analytics.html"><i data-lucide="chart-no-axes-combined"></i>Analytics</a><a class="active" href="promotions.html"><i data-lucide="badge-percent"></i>Promotions</a><a class="" href="ads.html"><i data-lucide="megaphone"></i>Publicité VinHT</a><a class="" href="notifications.html"><i data-lucide="bell"></i>Notifications</a><a class="" href="settings.html"><i data-lucide="settings-2"></i>Boutique</a><a class="" href="support.html"><i data-lucide="life-buoy"></i>Support</a><a href="../merchant-center.html"><i data-lucide="wrench"></i>Centre complet</a><a href="../index.html"><i data-lucide="arrow-left"></i>Retour au site</a></nav></aside><section class="portal-main"><div class="portal-head"><div><span class="portal-kicker">Espace marchand</span><h1>Promotions</h1><p>Codes promo et remises pour votre boutique.</p></div></div><div data-merchant-gate hidden class="portal-card"></div><div data-merchant-content hidden>
+  <div id="promoRuntimeHost" class="portal-card"></div>
+
+  <div class="portal-card" id="promoCreateCard">
+    <div class="toolbar"><h3 style="margin:0">Nouvelle promotion</h3></div>
+    <form id="promoCreateForm" style="display:flex;flex-direction:column;gap:8px">
+      <div class="customer-grid">
+        <div class="field"><label>Mode</label><select class="input" name="mode" id="promoModeSelect"></select></div>
+        <div class="field"><label>Type de remise</label><select class="input" name="discount_type"><option value="percent">Pourcentage</option><option value="fixed_htg">Montant fixe (HTG)</option></select></div>
+        <div class="field"><label>Valeur de remise</label><input class="input" type="number" name="discount_value" min="0" step="0.01" required></div>
+      </div>
+      <div class="field" id="promoCodeField"><label>Code promo (3-32 caractères, A-Z 0-9 _ -)</label><input class="input" name="code" placeholder="WELCOME10" maxlength="32"></div>
+      <div class="field"><label>Nom de la promotion</label><input class="input" name="name" maxlength="120" required></div>
+      <div class="field"><label>Description (facultatif)</label><textarea class="input" name="description" rows="2" maxlength="500"></textarea></div>
+      <div class="customer-grid">
+        <div class="field"><label>Plafond de remise HTG (facultatif)</label><input class="input" type="number" name="max_discount_htg" min="0.01" step="0.01"></div>
+        <div class="field"><label>Sous-total minimum HTG</label><input class="input" type="number" name="min_subtotal_htg" min="0" step="1" value="0"></div>
+        <div class="field"><label>Quantité minimum</label><input class="input" type="number" name="min_quantity" min="1" step="1" value="1"></div>
+      </div>
+      <div class="field"><label>Périmètre</label><select class="input" name="scope_type" id="promoScopeSelect"></select></div>
+      <div class="field"><label>Types de prix concernés</label>
+        <div class="toolbar-group"><label style="font-size:13px;display:flex;gap:4px;align-items:center"><input type="checkbox" name="pricing_tier_retail" checked> Détail</label><label style="font-size:13px;display:flex;gap:4px;align-items:center"><input type="checkbox" name="pricing_tier_wholesale"> Gros</label></div>
+      </div>
+      <div class="customer-grid">
+        <div class="field"><label>Début</label><input class="input" type="datetime-local" name="starts_at" required></div>
+        <div class="field"><label>Fin</label><input class="input" type="datetime-local" name="ends_at" required></div>
+      </div>
+      <div class="customer-grid">
+        <div class="field"><label>Limite totale d'utilisation (vide = illimité)</label><input class="input" type="number" name="total_usage_limit" min="1" step="1"></div>
+        <div class="field"><label>Limite par client</label><input class="input" type="number" name="per_user_usage_limit" min="1" max="100" step="1" value="1"></div>
+      </div>
+      <div id="promoCreateMsg" style="font-size:12px;display:none"></div>
+      <div class="toolbar-group"><button class="btn btn-dark btn-sm" type="submit">Créer en brouillon</button></div>
+    </form>
+  </div>
+
+  <div class="portal-card">
+    <div class="toolbar" style="flex-wrap:wrap;gap:10px"><h3>Mes promotions</h3>
+      <div class="toolbar-group" style="flex-wrap:wrap">
+        <select class="input" id="promoStatusFilter"><option value="">Tous statuts</option><option value="draft">Brouillon</option><option value="active">Active</option><option value="paused">En pause</option><option value="disabled">Désactivée</option></select>
+      </div>
+    </div>
+    <div id="promoListHost"></div>
+    <div id="promoListLoadMoreWrap" style="margin-top:10px;text-align:center"></div>
+  </div>
+
+  <div id="promoDetailHost"></div>
+</div></section></div></main><nav class="mobile-bottom-nav"><a class=" " href="../index.html"><i data-lucide="house"></i><span>Accueil</span></a><a class=" " href="../category.html"><i data-lucide="grid-2x2"></i><span>Catégories</span></a><a class=" " href="../wishlist.html"><i data-lucide="heart"></i><span>Favoris</span></a><a class=" mobile-cart" href="../cart.html"><i data-lucide="shopping-bag"></i><span>Panier</span><span class="cart-count">0</span></a><a class="active " href="../account.html"><i data-lucide="user"></i><span>Moi</span></a></nav><script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.js" defer></script><script src="../js/demo/market-demo-standalone.js"></script>
+  <script type="module" src="../js/main.js"></script>  <script src="../js/ui/siteLoader.js" defer></script>
+</body></html>
