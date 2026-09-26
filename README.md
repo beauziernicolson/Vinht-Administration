@@ -1,166 +1,316 @@
-# VinHT — Plateforme Web e-commerce & marketplace
+# VinHT — Dossier technique Web pour revue administrative
 
-VinHT est une plateforme Web de commerce électronique conçue pour centraliser, dans un même environnement, l’achat, la vente, la gestion marchande, le traitement des commandes et la livraison.
+VinHT est une plateforme Web de commerce électronique de type **marketplace multi-acteurs**, conçue pour réunir dans une même application le catalogue, la vente, les promotions, le paiement, la préparation des commandes, la livraison et les opérations d’administration.
 
-**Site de production :** https://vinht.store
+**Application de production :** https://vinht.store
 
-Ce dépôt constitue la version technique de présentation de l’application Web destinée à la revue administrative. Il privilégie le code réellement utile à l’exécution et à l’audit du produit, sans historique de travail, notes internes, fichiers temporaires ou documentation de développement obsolète.
+Ce dépôt public est la **version de remise administrative du produit Web**. Il est volontairement limité au code utile à l’exécution, à la compréhension et à l’audit de l’application Web. Il ne contient pas les secrets d’infrastructure, les données de production, les documents de travail internes, les historiques de passation, les fichiers d’assistants IA ni le chantier Mobile/Capacitor.
 
-## Présentation
+> Ce dépôt ne remplace pas le repository privé de développement. Il présente le périmètre Web remis à l’administration sans exposer les éléments sensibles qui n’ont pas vocation à être publics.
 
-VinHT repose sur une architecture Web multi-rôles. Une même plateforme sert plusieurs parcours métiers tout en conservant une séparation des permissions et des responsabilités côté serveur.
+---
 
-Les principaux espaces sont :
+## 1. Présentation du produit
 
-- **Client** : catalogue, recherche, fiches produit, variantes, panier, checkout, commandes, compte et suivi de livraison.
-- **Marchand** : boutique, catalogue, produits, stock, commandes, promotions, revenus et préparation des commandes.
-- **Livreur** : disponibilité, missions, prise en charge, étapes de livraison et confirmation de remise.
-- **Administration** : supervision des utilisateurs, marchands, produits, commandes, promotions, candidatures, logistique, paramètres et opérations de contrôle.
-- **Agent** : accès opérationnel délégué selon les permissions attribuées par la plateforme.
+VinHT relie plusieurs catégories d’utilisateurs autour d’un même backend métier :
 
-## Principes métier
+- **Client / Acheteur** : catalogue, recherche, variantes, panier, checkout, commandes, compte et suivi de livraison.
+- **Marchand** : produits, stock, commandes, promotions, préparation, expédition et suivi de son activité.
+- **Livreur** : disponibilité, missions, prise en charge, progression de livraison et confirmation de remise.
+- **Agent** : opérations déléguées selon les capacités accordées par le backend.
+- **Administrateur** : supervision de la plateforme, utilisateurs, marchands, catalogue, commandes, logistique, promotions et paramètres opérationnels.
 
-VinHT applique plusieurs règles structurantes :
+Le produit applique un principe architectural constant : **le navigateur affiche et collecte les choix utilisateur, mais les décisions sensibles restent autoritaires côté serveur**.
 
-- le navigateur n’est jamais la source financière autoritaire ;
-- les prix, frais, remises, stocks et totaux transactionnels sont validés côté serveur ;
-- les produits à variantes utilisent des identifiants de variantes réels retournés par le backend ;
-- un panier transactionnel ne mélange pas plusieurs devises ;
-- les actions de livraison sont pilotées par les capacités et transitions autorisées par le backend ;
-- les rôles et permissions ne sont pas fabriqués par l’interface ;
-- les opérations sensibles utilisent des contrats serveur explicites et des contrôles d’accès.
+---
 
-## Architecture technique
+## 2. Périmètre de ce repository
+
+### Inclus
+
+- pages Web publiques et client ;
+- espaces Marchand, Livreur, Agent et Administration ;
+- JavaScript applicatif partagé ;
+- services frontend ;
+- composants UI et utilitaires ;
+- ressources visuelles nécessaires ;
+- routes serveur Web pour les intégrations de paiement exposées au navigateur ;
+- workflow CI de contrôle du périmètre Web ;
+- README d’audit.
+
+### Non inclus
+
+- secrets serveur ;
+- clés `service_role` ;
+- credentials MonCash/FlexiCash ou autres fournisseurs ;
+- données de production ;
+- historique complet des migrations privées ;
+- documents internes de développement ;
+- handoffs, prompts et notes d’agents IA ;
+- Mobile / Capacitor / Android / iOS.
+
+Le backend autoritaire repose sur Supabase/PostgreSQL, RLS, RPC et fonctions serveur. Son architecture et ses contrats principaux sont décrits dans le **dossier administratif PDF remis séparément**.
+
+---
+
+## 3. Architecture générale
 
 ```text
-Navigateur Web
-│
-├── Pages HTML / CSS
-├── JavaScript ES Modules
-│   ├── pages/       contrôleurs d’écrans
-│   ├── services/    accès aux données et contrats métier
-│   ├── ui/          composants et comportements partagés
-│   ├── lib/         utilitaires techniques
-│   └── data/        taxonomies et données de présentation
-│
-├── API Web sécurisées (/api)
-│   ├── MonCash
-│   └── FlexiCash
-│
-└── Supabase
-    ├── Authentification
-    ├── PostgreSQL
-    ├── Row Level Security
-    ├── RPC métier
-    └── Edge Functions
+Utilisateurs Web
+      │
+      ▼
+HTML / CSS / JavaScript ES Modules
+      │
+      ├── js/pages/       contrôleurs d’écrans
+      ├── js/ui/          composants et interactions partagées
+      ├── js/services/    accès backend et contrats métier
+      └── js/lib/         utilitaires techniques
+      │
+      ├──────────────► Supabase Auth
+      │
+      ├──────────────► PostgreSQL / RLS / RPC
+      │
+      └──────────────► /api/*
+                         │
+                         ├── MonCash
+                         └── FlexiCash / plateforme
 ```
 
 ### Frontend
 
-Le frontend est construit en **HTML5, CSS et JavaScript ES Modules**, sans framework SPA imposé. `js/main.js` agit comme point d’entrée partagé et initialise les fonctionnalités uniquement lorsqu’une page expose les éléments correspondants.
-
-Cette approche permet de conserver des pages explicites, un chargement progressif des modules et une séparation claire entre interface et services métier.
+Le frontend utilise **HTML5, CSS3 et JavaScript ES Modules**. Il n’impose pas de framework SPA ni de bundler obligatoire pour fonctionner. `js/main.js` sert de point d’entrée partagé et initialise les comportements utiles selon la page affichée.
 
 ### Backend
 
-Le backend transactionnel s’appuie sur **Supabase**. Les données sensibles et les décisions métier autoritaires sont traitées par PostgreSQL, les politiques RLS, les RPC et les fonctions serveur.
+Le backend transactionnel est basé sur **Supabase** :
 
-Le navigateur utilise uniquement les capacités prévues pour le client public/authentifié. Les secrets de fournisseur, clés privées et privilèges `service_role` ne doivent jamais être embarqués dans le code frontend.
+- Supabase Auth ;
+- PostgreSQL ;
+- Row Level Security ;
+- RPC métier ;
+- Edge Functions ;
+- configuration runtime côté serveur.
 
-### API Web
+Le frontend ne possède pas la capacité de s’accorder lui-même des rôles sensibles ni de déclarer un paiement comme réussi.
 
-Le dossier `api/` contient les routes serveur nécessaires aux intégrations de paiement exposées par l’application Web.
+---
 
-#### MonCash
+## 4. Stack technique
 
-- `POST /api/moncash/create-payment`
-- `POST /api/moncash/verify-payment`
+| Couche | Technologie |
+|---|---|
+| Frontend | HTML5, CSS3, JavaScript ES Modules |
+| Backend applicatif | Supabase |
+| Base de données | PostgreSQL |
+| Authentification | Supabase Auth |
+| Autorisation | RLS + RPC + contexte d’accès backend |
+| API Web | Fonctions serveur JavaScript sous `/api` |
+| Paiements | MonCash + couche FlexiCash/plateforme selon disponibilité runtime |
+| Hébergement Web | Vercel |
+| Backend hébergé | Supabase |
+| CI de remise | GitHub Actions |
 
-La création de paiement ne fait pas confiance à un montant transmis par le navigateur : le proxy transmet l’identité de la commande au backend autoritaire, qui détermine les données financières réelles.
+---
 
-#### FlexiCash
+## 5. Fonctionnalités principales
 
-- `POST /api/flexicash/create-payment`
-- `POST /api/flexicash/payment-methods`
-- `POST /api/flexicash/verify-payment`
-- `POST /api/flexicash/webhook`
+### Client
 
-Le webhook conserve le corps brut et les en-têtes de signature nécessaires à la validation serveur.
+- consultation du catalogue ;
+- recherche et catégories ;
+- fiches produit ;
+- variantes ;
+- prix détail / gros ;
+- panier ;
+- checkout ;
+- promotions ;
+- commandes ;
+- compte et profil ;
+- suivi de livraison.
 
-## Paiements
+### Marchand
 
-Le parcours de paiement suit le principe suivant :
+- gestion boutique ;
+- gestion produits ;
+- inventaire et variantes ;
+- commandes ;
+- préparation / fulfillment ;
+- publication pour livraison ;
+- promotions ;
+- informations financières et paramètres disponibles.
+
+### Livreur
+
+- profil ;
+- disponibilité ;
+- missions disponibles ;
+- prise en charge ;
+- transitions de livraison ;
+- confirmation de remise ;
+- historique.
+
+### Administration
+
+- utilisateurs ;
+- marchands ;
+- catalogue ;
+- commandes ;
+- promotions ;
+- candidatures ;
+- logistique ;
+- paramètres ;
+- opérations protégées par les capacités backend.
+
+---
+
+## 6. Autorité des données et règles sensibles
+
+Plusieurs garde-fous structurent le produit :
+
+1. **Les montants transactionnels ne sont pas autoritaires dans le navigateur.** Le frontend envoie les identifiants de produit/variante, la quantité et le palier de prix ; le backend recalcule les valeurs applicables.
+2. **Les rôles ne sont pas déduits localement.** Le frontend consomme un contexte d’accès renvoyé par le backend.
+3. **Les paiements sont vérifiés côté serveur.** Une redirection réussie ne suffit jamais à marquer une commande comme payée.
+4. **Les variantes utilisent des identifiants réels du backend.** L’interface ne fabrique pas de combinaison produit.
+5. **La logistique est pilotée par des contrats serveur.** Les transitions sensibles ne sont pas inférées librement depuis l’UI.
+6. **Un panier transactionnel ne mélange pas plusieurs devises.**
+
+---
+
+## 7. Authentification et autorisation
+
+L’authentification utilisateur est gérée par Supabase Auth.
+
+Le contexte d’accès applicatif provient du backend. Les rôles métier et capacités servent à déterminer les surfaces accessibles, mais **l’autorisation réelle reste appliquée côté serveur**.
+
+Exemples de code à consulter :
+
+- `js/services/auth.js`
+- `js/services/access.js`
+- `js/services/profile.js`
+- `js/services/supabase.js`
+
+---
+
+## 8. Paiements
+
+### MonCash
+
+Routes Web :
+
+```text
+POST /api/moncash/create-payment
+POST /api/moncash/verify-payment
+```
+
+Le navigateur transmet principalement l’identité de la commande. Les montants et l’état final restent contrôlés côté serveur.
+
+### FlexiCash / plateforme
+
+Routes Web :
+
+```text
+POST /api/flexicash/create-payment
+POST /api/flexicash/payment-methods
+POST /api/flexicash/verify-payment
+POST /api/flexicash/webhook
+```
+
+Le webhook est traité comme une entrée serveur et conserve les données nécessaires à la validation de signature côté backend.
+
+### Flux simplifié
 
 ```text
 Panier
   ↓
 Création serveur de la commande
   ↓
-Création du paiement chez le fournisseur
+Création du paiement
   ↓
-Redirection sécurisée vers le fournisseur
+Checkout hébergé fournisseur
   ↓
-Retour vers VinHT
+Retour utilisateur
   ↓
 Vérification serveur
   ↓
 Mise à jour de l’état de paiement
 ```
 
-L’interface ne considère pas un paiement comme réussi simplement parce qu’une redirection ou une requête cliente s’est terminée. L’état final provient du serveur.
+---
 
-## Logistique et livraison
+## 9. Logistique
 
-Le système de livraison sépare la commande commerciale de la mission logistique. Les transitions importantes — publication d’une mission, prise en charge, arrivée au point de retrait, remise marchand, transit, arrivée à destination et confirmation client — dépendent des contrats et capacités retournés par le backend.
+La commande commerciale et la mission de livraison sont traitées comme deux objets métier distincts.
 
-Cette séparation évite de déduire des permissions sensibles à partir d’un simple statut affiché dans l’interface.
+Le cycle peut inclure :
 
-## Sécurité
+- préparation marchand ;
+- publication pour livraison ;
+- mise à disposition de la mission ;
+- prise en charge livreur ;
+- arrivée au point de retrait ;
+- remise marchand ;
+- transit ;
+- arrivée chez le client ;
+- confirmation de livraison.
 
-La conception Web applique notamment les principes suivants :
+Les détails visibles dans l’interface sont conditionnés par les données et capacités renvoyées par le backend.
 
-- authentification et session gérées avec Supabase Auth ;
-- contrôles d’accès serveur et RLS ;
-- séparation des rôles Client, Marchand, Livreur, Agent et Admin ;
-- absence de clés privées ou de secrets fournisseur dans le navigateur ;
-- montants transactionnels déterminés côté serveur ;
-- validation des identifiants produits et variantes avant checkout ;
-- vérification serveur des paiements ;
-- conservation du corps brut pour les webhooks signés ;
-- limitation des données persistées côté navigateur aux informations non autoritaires nécessaires à l’expérience utilisateur.
+---
 
-## Structure du dépôt
+## 10. Sécurité
+
+Ce repository ne prétend pas que VinHT est « invulnérable » ou « certifié ». Il expose au contraire des mécanismes vérifiables :
+
+- Auth Supabase ;
+- RLS côté PostgreSQL ;
+- RPC pour les opérations sensibles ;
+- séparation clé publishable / secrets serveur ;
+- absence de `service_role` dans le frontend ;
+- validation serveur des paiements ;
+- calcul autoritaire des montants côté serveur ;
+- séparation des surfaces selon les rôles/capacités ;
+- restrictions de domaine pour certaines redirections de paiement ;
+- contrôle automatisé contre les formes courantes de secrets commités.
+
+Un audit du repository ne remplace pas un pentest, un audit d’infrastructure, une revue réglementaire ou une analyse complète de la configuration du projet Supabase/Vercel.
+
+---
+
+## 11. Structure du repository
 
 ```text
 Vinht-Administration/
-├── admin/                 interfaces d’administration
-├── agent/                 espace agent
-├── api/                   routes serveur Web pour les paiements
-│   ├── flexicash/
-│   └── moncash/
-├── assets/                ressources visuelles nécessaires
-├── courier/               espace livreur
-├── css/                   styles spécialisés
-├── images/                ressources d’intégration et de paiement
+├── .github/workflows/ci.yml    contrôle qualité de la remise Web
+├── admin/                      interfaces d’administration
+├── agent/                      espace agent
+├── api/
+│   ├── flexicash/              routes paiement plateforme
+│   └── moncash/                routes MonCash
+├── assets/                     ressources visuelles
+├── courier/                    espace livreur
+├── css/                        styles spécialisés
+├── images/                     images d’intégration / UI
 ├── js/
-│   ├── data/              taxonomies de présentation
-│   ├── lib/               utilitaires
-│   ├── pages/             logique des pages
-│   ├── services/          services métier et accès backend
-│   ├── ui/                composants UI partagés
+│   ├── data/                   données de présentation
+│   ├── lib/                    utilitaires
+│   ├── pages/                  contrôleurs de pages
+│   ├── services/               services métier / backend
+│   ├── ui/                     composants UI
 │   ├── config.js
 │   └── main.js
-├── merchant/              espace marchand
-├── partials/              fragments HTML partagés
-├── *.html                 pages Web publiques et client
-├── *.css                  styles globaux et fonctionnels
+├── merchant/                   espace marchand
+├── partials/                   fragments HTML partagés
+├── *.html                      pages publiques et client
+├── *.css                       styles racine
 ├── .gitignore
 └── README.md
 ```
 
-## Exécution locale
+---
 
-Le frontend peut être servi avec n’importe quel serveur HTTP statique. Exemple avec Python :
+## 12. Exécution locale
+
+Le frontend peut être servi par un serveur HTTP statique :
 
 ```bash
 python3 -m http.server 4173
@@ -172,43 +322,85 @@ Puis ouvrir :
 http://localhost:4173
 ```
 
-Les routes du dossier `api/` nécessitent un environnement compatible avec les fonctions serveur utilisées en production. Une simple ouverture des fichiers HTML sur le système de fichiers n’est pas recommandée, notamment à cause des modules ES, des sessions et des politiques CORS.
+Une simple ouverture en `file://` n’est pas recommandée à cause des modules ES, des sessions et des politiques CORS.
 
-## Configuration
+Les routes `/api` nécessitent un environnement serverless compatible avec les fonctions utilisées en production.
 
-La configuration navigateur se trouve dans `js/config.js` et doit uniquement contenir des informations publiables côté client.
+---
 
-Les identifiants secrets des fournisseurs de paiement et tout privilège backend élevé doivent être configurés dans l’environnement serveur correspondant, jamais ajoutés au dépôt.
+## 13. Configuration
 
-## Qualité et validation
+La configuration navigateur doit uniquement contenir des informations destinées à être publiques côté client.
 
-La version de présentation fait l’objet de contrôles automatisables portant notamment sur :
+Les éléments suivants ne doivent jamais être commités dans ce dépôt :
 
-- la syntaxe JavaScript ;
-- la résolution des modules locaux ;
-- la présence des ressources statiques référencées ;
-- l’absence de fichiers internes ou temporaires ;
-- l’absence de formats courants de secrets ou de clés privées ;
-- la cohérence du périmètre Web remis à l’administration.
+- `service_role` Supabase ;
+- secrets fournisseurs ;
+- tokens privés ;
+- clés privées ;
+- certificats privés ;
+- mots de passe ;
+- fichiers `.env` contenant des secrets.
 
-La règle de validation du projet est la suivante : **une fonctionnalité n’est considérée comme terminée que lorsqu’elle est implémentée, documentée, testée et validée dans son périmètre.**
+---
 
-## Déploiement
+## 14. Contrôles qualité du repository de remise
 
-L’application Web de production est publiée sur **Vercel** et utilise **Supabase** comme infrastructure backend. Le déploiement doit conserver la séparation entre :
+Le workflow `.github/workflows/ci.yml` vérifie notamment :
 
-1. ressources frontend publiques ;
-2. routes serveur `/api` ;
-3. backend Supabase et politiques d’accès ;
-4. secrets et identifiants fournisseurs stockés uniquement dans les environnements sécurisés.
+- syntaxe JavaScript ;
+- périmètre Web uniquement ;
+- absence de Mobile/Capacitor/Android/iOS ;
+- absence de documents Markdown supplémentaires ;
+- absence de fichiers internes connus ;
+- motifs courants de secrets ;
+- références locales JS/CSS/HTML ;
+- présence des assets référencés.
 
-Les modifications de production doivent suivre un cycle de validation avant publication et permettre un retour à une version stable en cas de régression.
+Ces contrôles sont des garde-fous de repository. Ils ne remplacent pas les tests métier et backend exécutés dans le repository privé du produit.
 
-## Périmètre de ce dépôt
+---
 
-Ce dépôt de remise contient le code Web nécessaire à la compréhension et à l’évaluation de VinHT ainsi que les proxys Web de paiement pouvant être présentés sans exposer de secret.
+## 15. Carte d’audit rapide
 
-Les secrets d’infrastructure, identifiants privés de fournisseurs et données de production ne font pas partie du dépôt. Les mécanismes backend autoritaires restent protégés dans leur environnement d’exécution.
+| Sujet | Où regarder |
+|---|---|
+| Point d’entrée Web | `js/main.js` |
+| Authentification | `js/services/auth.js` |
+| Contexte d’accès | `js/services/access.js` |
+| Client Supabase | `js/services/supabase.js` |
+| Catalogue | `js/services/catalog.js` |
+| Panier | `js/services/cart.js` |
+| Commandes | `js/services/orders.js`, `js/services/promotions.js` |
+| Checkout | `js/pages/checkout.js` |
+| Logistique | `js/services/logistics.js`, services livreur/marchand |
+| Marchand | `merchant/`, `js/services/merchant*` |
+| Livreur | `courier/`, `js/services/courier*` |
+| Administration | `admin/`, `js/pages/admin*`, `js/services/admin*` |
+| MonCash | `api/moncash/`, `js/services/moncashPayments.js` |
+| FlexiCash | `api/flexicash/`, `js/services/payments.js` |
+| Contrôles repository | `.github/workflows/ci.yml` |
+| Architecture complète backend | dossier administratif PDF remis avec ce repository |
+
+---
+
+## 16. Limites et transparence
+
+La présence d’un module dans le code ne signifie pas automatiquement qu’il est actif en Production. Certaines capacités dépendent :
+
+- de la configuration runtime ;
+- des droits de l’utilisateur ;
+- de la disponibilité du fournisseur ;
+- des données opérationnelles ;
+- de l’état du backend.
+
+Le repository de remise évite volontairement les affirmations telles que « 100 % sécurisé », « sans bug » ou « certifié ». L’objectif est de fournir une base technique compréhensible et vérifiable.
+
+---
+
+## 17. Règle de validation
+
+> **Aucune fonctionnalité n’est considérée comme terminée si elle n’est pas documentée, testée et validée dans son périmètre.**
 
 ---
 
