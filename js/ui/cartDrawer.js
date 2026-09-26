@@ -1,10 +1,17 @@
 import { getCart, setCart } from "../services/cart.js";
+import { isDemoProduct } from "../services/productType.js";
 import { money } from "../lib/format.js";
 import { refreshIcons } from "../lib/icons.js";
+
+const DEMO_KEY = "vinht-demo-cart-v15";
 
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (m) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
 }[m]));
+
+function isDemo() {
+  return Boolean(window.__VINHT_STANDALONE_DEMO__);
+}
 
 function prefix() {
   return location.pathname.includes("/admin/") || location.pathname.includes("/merchant/") || location.pathname.includes("/agent/") || location.pathname.includes("/courier/") ? "../" : "";
@@ -19,12 +26,55 @@ function ensureStyles() {
   document.head.appendChild(link);
 }
 
+function demoProducts() {
+  return Array.isArray(window.__VINHT_DEMO_DB__?.products) ? window.__VINHT_DEMO_DB__.products : [];
+}
+
+function readDemoLines() {
+  try {
+    const rows = JSON.parse(localStorage.getItem(DEMO_KEY) || "[]");
+    return Array.isArray(rows) ? rows : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeDemoLines(rows) {
+  try { localStorage.setItem(DEMO_KEY, JSON.stringify(rows)); } catch {}
+  window.dispatchEvent(new CustomEvent("vinht:cartchange"));
+}
+
+function demoItems() {
+  const byId = new Map(demoProducts().map((p) => [String(p.id), p]));
+  return readDemoLines().map((line) => {
+    const p = byId.get(String(line.id));
+    if (!p) return null;
+    const wholesale = line.pricingTier === "wholesale" && p.wholesale;
+    return {
+      id: p.id,
+      productId: p.id,
+      name: p.name,
+      seller: p.merchant || "Marchand VinHT",
+      price: wholesale ? Number(p.wholesale) : Number(p.price),
+      currency: "HTG",
+      qty: Math.max(1, Number(line.qty) || 1),
+      img: p.image ? `${prefix()}demo-products/${String(p.image).split("/").pop()}` : `${prefix()}assets/abstract-brand.jpg`,
+      pricingTier: wholesale ? "wholesale" : "retail",
+      moq: wholesale ? Number(p.moq) || 1 : null,
+    };
+  }).filter(Boolean);
+}
+
 function items() {
-  return getCart();
+  return isDemo() ? demoItems() : getCart();
 }
 
 function writeItems(next) {
-  setCart(next);
+  if (isDemo()) {
+    writeDemoLines(next.map((x) => ({ id: x.id || x.productId, qty: x.qty, pricingTier: x.pricingTier || "retail" })));
+  } else {
+    setCart(next);
+  }
 }
 
 function count(itemsList = items()) {
@@ -117,6 +167,7 @@ function render() {
   const sum = root.querySelector("[data-cart-subtotal]");
   const checkout = root.querySelector("[data-cart-checkout]");
   const current = items();
+  const containsDemo = current.some(isDemoProduct);
   const currencies = [...new Set(current.map((x) => String(x?.currency || "HTG").toUpperCase()))];
   const currentCurrency = currencies.length === 1 ? currencies[0] : null;
   const mixedCurrencies = currencies.length > 1;
@@ -136,11 +187,11 @@ function render() {
     checkout.removeAttribute("href");
   } else {
     list.innerHTML = current.map(row).join("");
-    if (mixedCurrencies) {
+    if (containsDemo || mixedCurrencies) {
       checkout.classList.add("is-disabled");
       checkout.setAttribute("aria-disabled", "true");
       checkout.removeAttribute("href");
-      checkout.querySelector("span").textContent = "Séparez les devises du panier";
+      checkout.querySelector("span").textContent = containsDemo ? "Retirez les démos pour commander" : "Séparez les devises du panier";
     } else {
       checkout.classList.remove("is-disabled");
       checkout.removeAttribute("aria-disabled");

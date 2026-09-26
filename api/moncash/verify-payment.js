@@ -11,6 +11,11 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "not_authenticated" });
   }
 
+  // Défense en profondeur : le proxy ne transmet JAMAIS le corps brut. Il ne
+  // reconstruit que le seul champ attendu par le backend (order_id) — même si
+  // le frontend venait un jour à envoyer autre chose (montant, etc.), ce
+  // proxy ne le laisserait pas passer. Le backend reste de toute façon seul
+  // autoritaire, ceci est une couche supplémentaire, pas la seule protection.
   let body = req.body;
   if (typeof body === "string") {
     try { body = JSON.parse(body); } catch { body = {}; }

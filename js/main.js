@@ -37,6 +37,9 @@ import { initAdminCourierAvailabilityOwnership } from "./pages/adminCourierAvail
 import { getMyRoles } from "./services/profile.js";
 import { initPublicPortal } from "./pages/publicPortal.js?v=20260918a";
 import { syncFlexicashIdentityIfPending, showFlexicashSyncNotice, renderFlexicashLinkCard, handleFlexicashPopupCallbackIfNeeded } from "./services/flexicashIdentity.js";
+// Version explicite : invalide la copie ESM mise en cache après la correction
+// de syntaxe du module démo, sans activer le mode démo en LIVE.
+import { initVisualDemo, isVisualDemo } from "./demo/visual-demo.js?v=20260920removed";
 
 async function boot() {
   // FlexiCash OAuth Identity — cette fenêtre peut être la popup OAuth
@@ -46,6 +49,7 @@ async function boot() {
   if (await handleFlexicashPopupCallbackIfNeeded()) return;
 
   initMobileHeader();
+  if (window.__VINHT_STANDALONE_DEMO__) { refreshIcons(); return; }
   await initShell().catch((err) => console.warn("[VinHT] shell:", err));
   initMerchantFeatureNav();
   initPromotionHardening();
@@ -65,6 +69,12 @@ async function boot() {
     })
     .catch((err) => console.warn("[VinHT] sync identité FlexiCash:", err && err.message));
 
+  if (isVisualDemo()) {
+    initVisualDemo();
+    updateCartCount();
+    refreshIcons();
+    return;
+  }
   maybeSeedCart();
   updateCartCount();
   initCartDrawer();
