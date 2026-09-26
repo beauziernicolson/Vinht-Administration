@@ -1,0 +1,36 @@
+name: Fix exact root HTML sync
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/fix-root-html-sync.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: sync/exact-web-clone
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          files=['category.html','deals.html','index.html','new-arrivals.html','products.html','store.html','stores.html']
+          marker='<script src="js/demo/market-demo-standalone.js"></script>\n  '
+          for name in files:
+              p=Path(name)
+              s=p.read_text('utf-8')
+              s=s.replace(marker,'')
+              p.write_text(s,'utf-8')
+          PY
+          git config user.name 'VinHT Source Sync'
+          git config user.email 'actions@users.noreply.github.com'
+          git add category.html deals.html index.html new-arrivals.html products.html store.html stores.html
+          git commit -m 'sync(web): match exact root HTML sources' || true
+          git push origin HEAD:sync/exact-web-clone
